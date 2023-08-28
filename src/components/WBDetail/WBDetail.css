@@ -1,0 +1,42 @@
+.select{
+    display: flex;
+    justify-content: space-around;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 50px;
+
+}
+
+.labelBox{
+    width: 175px;
+    background: #D9D9D9;
+    margin-top: 35px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.labelBox:hover{
+    background: #b9b9b9;
+
+}
+
+.workbook{
+    justify-content: center;
+}
+
+.Projectname{
+    display: flex;
+    justify-content: center;
+}
+
+.projectline{
+    margin-top: 10px;
+    height: 0.75px;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+
+}

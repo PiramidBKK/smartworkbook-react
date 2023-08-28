@@ -1,0 +1,43 @@
+.LocationText{
+    margin-top: 1.5%;
+    margin-left: 15%;
+
+}
+
+
+
+.filterTab{
+    display: flex;
+    justify-content: end;
+    width: 80%;
+
+}
+
+.filter{
+    width: 25px;
+
+}
+
+.sort{
+    font-size: 10px;
+    margin-right: 3px;
+    display: flex;
+    align-items: end;
+
+}
+
+.workingTab{
+    margin-top: 2.5%;
+    margin-left: 15%;
+
+
+}
+
+.line{
+    width: 80%;
+    height: 1.5px;
+    background-color: black;
+    margin-top: 5px;
+
+}
+
