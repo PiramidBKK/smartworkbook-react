@@ -1,5 +1,6 @@
-import {FunnelIcon} from '@heroicons/react/24/outline'
+import {FunnelIcon ,ArrowLeftOnRectangleIcon} from '@heroicons/react/24/outline'
 import './WBListPage.css'
+import { Link } from 'react-router-dom';
 
 const WBListPage = () =>{
     return(
@@ -16,7 +17,19 @@ const WBListPage = () =>{
                     <div className='line'/>
 
                 </div>
+
+            
+                <Link to='/login'><div className='Logout'>
+                        <h3>Logout</h3>
+                        <ArrowLeftOnRectangleIcon className='Logouticon'/>
+
+                    </div>
+                </Link>
+
         </body>
+
+
+
     )
 }
 

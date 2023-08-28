@@ -1,0 +1,53 @@
+.AddImgText{
+    margin-top: 1.5%;
+
+}
+
+h1{
+    text-align: center;
+
+}
+
+.AddImgForm{
+    width: 80%;
+    height: 1.5px;
+    border: 1px solid;
+    margin-top: 2.5%;
+    margin-left: 10%;
+    height: 80%;
+    padding: 20px;
+}
+
+.toWbList{
+    
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 120px;
+}
+
+.nexttowblist{
+    background: #E61818;
+    padding: 15px 50px;
+    border-radius: 10px;
+
+}
+
+.nexttowblist h3{
+    color: black;
+    align-items: center;
+}
+
+.backtoaddnew{
+    background: #676767;
+    padding: 15px 50px;
+    border-radius: 10px;
+    
+}
+
+.backtoaddnew h3{
+    color: black;
+    align-items: center;
+}
+
+
+

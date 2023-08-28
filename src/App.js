@@ -5,6 +5,9 @@ import WBListPage from './components/WBListPage/WBListPage';
 import Login from './components/Authen/Login';
 import WBDetail from './components/WBDetail/WBDetail';
 import Register from './components/Authen/Register';
+import Forgotpass from './components/Authen/Forgot';
+import AddData from './components/AddNew/AddData';
+import AddImg from './components/AddNew/AddImg';
 
 function App() {
   return (
@@ -14,13 +17,15 @@ function App() {
         {/* headerpath */}
         <HomePageHeader />
         <Routes>
-          {/* bodypath */}
-
-          
+          {/* bodypath */}     
           <Route  path='/' element={<WBListPage />}/>
-          <Route  path='/login' element={<Login/>}/>
-          <Route  path='/register' element={<Register/>}/>
-          <Route path='/workbook' element={<WBDetail />}/>
+          <Route  path='login' element={<Login/>}/>
+          <Route  path='register' element={<Register/>}/>
+          <Route path='workbook' element={<WBDetail />}/>
+          <Route path='forgotpass' element={<Forgotpass />} />
+          <Route path='addnew' element={<AddData />} />         
+          <Route path='addnew/addimg' element={<AddImg />} />
+                   
         </Routes>
         
       </BrowserRouter>

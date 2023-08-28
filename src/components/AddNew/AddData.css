@@ -1,0 +1,116 @@
+.AddDataPage{
+    margin-top: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+}
+
+.AddDataPage h1{
+    text-align: center;
+    padding: 20px;
+
+}
+
+.AddDataPage form{
+    box-sizing: border-box;
+}
+
+form .AddProjectname{
+    position: relative;
+    margin: 15px 0;
+    padding-top: 20px;
+}
+
+.AddProjectname{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.AddProjectname label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.AddLocation{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.AddLocation label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.AddProjectname input{
+    border: none;
+    height: 55px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+
+}
+
+.AddLocation input{
+    border: none;
+    margin-bottom: 15px;
+    height: 55px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+
+.AddType{
+    margin-top: 10px;
+    
+}
+
+.AddDataPage .toAddImg{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px -25px;
+}
+
+.next{
+    background: #E61818;
+    padding: 15px 50px;
+    border-radius: 10px;
+
+}
+
+.next h3{
+    color: black;
+    align-items: center;
+}
+
+
+
+
+.back{
+    background: #676767;
+    padding: 15px 50px;
+    border-radius: 10px;
+    
+}
+
+.back h3{
+    color: black;
+    align-items: center;
+}
+
+
+

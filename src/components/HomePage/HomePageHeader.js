@@ -7,11 +7,17 @@ const HomePageHeader = () =>{
       <header>
         <div className="Header">
           <div className="navbar">
-              <div className="addnew">
+          <Link to='/addnew'>
+          <div className="addnew">
                 <PlusCircleIcon className="plus-icon" />
                 <div className="text">Add New</div>
               </div>
-              <Link to="/"><img src="./image/piramidLogo.png"></img></Link>
+          </Link>
+          <Link to="/">
+            <img src={process.env.PUBLIC_URL + '/image/piramidLogo.png'} alt="โลโก้" />
+          </Link>
+
+
             <div className='export'>
                 <ArrowUpOnSquareIcon className='exporticon'/>
                 <div className='exporttext'>Export</div>

@@ -21,6 +21,7 @@ img{
 }
 
 .addnew{
+    color: black;
     position: relative;
     display: flex;
     justify-content: center;

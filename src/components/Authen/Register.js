@@ -30,11 +30,13 @@ const Register = () =>{
 
                 </div>
 
+                <div className='PasswordBox'>
                 <div className="Login">
                     <input name="password" value={password} onChange={onChangeHandler} type="password" />
                     <span ></span>
                     <label>Password</label>
 
+                </div>
                 </div>
 
 
@@ -43,7 +45,7 @@ const Register = () =>{
                   </div>
                   
                 <div className='Link'>
-                <div className="register">
+                <div className="login">
                     Have account?<span> </span>
                     <Link to="/login" className='underLogin'>Login</Link>
                   </div>

@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import './Login.css'
 import React, { useState } from "react";
@@ -31,11 +32,13 @@ const Login = () =>{
 
                 </div>
 
+                <div className='PasswordBox'>
                 <div className="Login">
                     <input name="password" value={password} onChange={onChangeHandler} type="password" />
                     <span ></span>
                     <label>Password</label>
 
+                </div>
                 </div>
 
 
@@ -51,7 +54,7 @@ const Login = () =>{
                   
                   <div className="forgotpass">
                     Forgot password?<span> </span>
-                    <Link to="/forgotpassword" className='underForgot'>Click Here</Link>
+                    <Link to="/forgotpass" className='underForgot'>Click Here</Link>
                   </div>
                 </div>
 
