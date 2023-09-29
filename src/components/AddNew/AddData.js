@@ -112,26 +112,23 @@ export default function AddData() {
         <div className="addimg">
           Upload Image
           <div className="addimg-btn">
-            <input 
-            multiple
-            type="file"
-             />
-
+            <input multiple type="file" />
           </div>
         </div>
 
         <div className="toAddImg">
-          <button className="back-btn">
-            <div className="back">
-              <h3>Back</h3>             
-            </div>
-          </button>
 
-          <button className="next-btn">
-            <div className="next">
-              <h3>Next</h3>
-            </div>
-          </button>
+
+
+          {loading ? (
+            <LoadingComponent />
+          ) : (
+            <button className="next-btn-adddata">
+              <div className="next-long">
+                <h3>Next</h3>
+              </div>
+            </button>
+          )}
         </div>
       </form>
     </div>

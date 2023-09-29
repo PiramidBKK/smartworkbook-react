@@ -7,7 +7,6 @@ import WBDetail from './components/WBDetail/WBDetail';
 import Register from './components/Authen/Register';
 import Forgotpass from './components/Authen/Forgot';
 import AddData from './components/AddNew/AddData';
-import AddImg from './components/AddNew/AddImg';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 import DvDesign from './components/AddNew/DvDesign/DvDesign';
 
