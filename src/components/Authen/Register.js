@@ -1,9 +1,14 @@
-import react, { useState } from 'react';
+import react, { useState, useEffect } from 'react';
 import './Register.css'
 import { Link } from 'react-router-dom';
+import { registerUserAction } from '../../redux/slices/users/userSlice';
+import { useDispatch , useSelector} from 'react-redux';
+import LoadingComponent from '../LoadingComp/LoadingComponent';
 
 
 const Register = () =>{
+
+  const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         username: "",
@@ -14,15 +19,31 @@ const Register = () =>{
 
     const onChangeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+      
       };
 
+      const onSubmitHandler = (e) => {
+        e.preventDefault();
+        dispatch(registerUserAction({username, password}))
+        
+      }
+
+      const { user, error, loading } = useSelector((state) => state?.users);
+
+ 
+        useEffect(() => {
+          if (user?.data) {
+            window.location.href = "/login";
+          }
+        }, [user]);
 
     return (
-      <body>
+      <div>
         <div className="RegisterBox">
           <h1>Register</h1>
+          {error && <p className='displayError'>{error?.message}</p>}
 
-          <form>
+          <form onSubmit={onSubmitHandler}>
                 <div className="Login">
                     <input name="username" value={username} onChange={onChangeHandler} type="text" />
                     <span ></span>
@@ -40,8 +61,11 @@ const Register = () =>{
                 </div>
 
 
-                  <div className="button">
-                    <button>Register</button>
+                  <div className="register-button">
+                    {loading ? (<LoadingComponent />): (
+                      <button className='formbtn'>Register</button>
+
+                    )}
                   </div>
                   
                 <div className='Link'>
@@ -55,7 +79,7 @@ const Register = () =>{
 
               </form>
         </div>
-      </body>
+      </div>
     );
 }
 

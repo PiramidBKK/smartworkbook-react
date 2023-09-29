@@ -1,6 +1,7 @@
 .LocationText{
-    margin-top: 1.5%;
-    margin-left: 15%;
+    margin-top: 2.5%;
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -41,34 +42,8 @@
 
 }
 
-.Logout{
-    position: absolute;
-    background: #e53838;
-    left: 75%;
-    padding: 20px;
-    margin: 10px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 10px;
-    color: black;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    top: 80%;
-    display: flex;
-    justify-content: end;
-
-    
-}
-
-.Logout h3{
-    text-align: center;
-
-}
-
-.Logout .Logouticon{
-    width: 30px;
-    align-items: center;
-    margin-left: 5px;
 
 
-}
+
+
 

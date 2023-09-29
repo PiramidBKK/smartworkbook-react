@@ -13,6 +13,7 @@
 .Forgotpass h2{
     text-align: center;
     padding: 10px;
+    margin: 30px;
 
 }
 
@@ -20,5 +21,13 @@
     display: flex;
     justify-content: center;
     padding-top: 10px;
+    background: red;
+    align-items: center;
     
+
+}
+
+.Forgotpass .Linkto h3{
+    align-items: center;
+    color: black;
 }

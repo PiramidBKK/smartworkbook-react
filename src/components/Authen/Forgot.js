@@ -3,14 +3,14 @@ import './Forgot.css'
 
 const Forgotpass = () =>{
     return(
-        <body>
+        <div>
             <div className='Forgotpass'>
                 <h2>ลองนึกดีๆ</h2>
-                <Link to='/login' className='Linkto'>Back</Link>
+                <Link to='/login' className='Linkto'><h3>นึกออกแล้ว</h3></Link>
             </div>
             
 
-        </body>
+        </div>
     )
 }
 

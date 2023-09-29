@@ -8,6 +8,9 @@ import Register from './components/Authen/Register';
 import Forgotpass from './components/Authen/Forgot';
 import AddData from './components/AddNew/AddData';
 import AddImg from './components/AddNew/AddImg';
+import AuthRoute from './components/AuthRoute/AuthRoute';
+import DvDesign from './components/AddNew/DvDesign/DvDesign';
+
 
 function App() {
   return (
@@ -23,13 +26,16 @@ function App() {
           <Route  path='register' element={<Register/>}/>
           <Route path='workbook' element={<WBDetail />}/>
           <Route path='forgotpass' element={<Forgotpass />} />
-          <Route path='addnew' element={<AddData />} />         
-          <Route path='addnew/addimg' element={<AddImg />} />
+          <Route path='addnew' element={
+            <AuthRoute>
+              <AddData />
+            </AuthRoute>
+          } />         
+          <Route path='addnew/dvdesign' element={<DvDesign />} />
                    
         </Routes>
         
       </BrowserRouter>
-      
 
     </div>
   );

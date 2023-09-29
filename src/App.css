@@ -11,3 +11,13 @@
 body{
   background: #ECECEC;
 }
+
+.prem{
+  position: absolute;
+  top: 50px;
+  left: 200px;
+  width: 65%;
+  opacity: 0.45;
+  z-index: -99;
+
+}

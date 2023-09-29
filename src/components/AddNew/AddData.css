@@ -1,5 +1,5 @@
 .AddDataPage{
-    margin-top: 30px;
+    margin-top: 40px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -9,7 +9,7 @@
 
 .AddDataPage h1{
     text-align: center;
-    padding: 20px;
+    padding-top: 30px;
 
 }
 
@@ -82,13 +82,14 @@ form .AddProjectname{
 .AddDataPage .toAddImg{
     display: flex;
     justify-content: space-between;
-    margin: 50px -25px;
+    margin: 25px -25px;
 }
 
 .next{
     background: #E61818;
     padding: 15px 50px;
     border-radius: 10px;
+    
 
 }
 
@@ -112,5 +113,34 @@ form .AddProjectname{
     align-items: center;
 }
 
+.next-btn{
+    border: none;
+    background: none;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 
+
+}
+
+.back-btn{
+    border: none;
+    background: none;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.addimg{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border: #000000 dashed 0.5px;
+    border-radius: 10px;
+}
+
+.addimg-btn{
+    margin: 20px;
+}
 

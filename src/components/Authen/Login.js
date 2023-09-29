@@ -1,12 +1,16 @@
 
 import { Link } from 'react-router-dom';
 import './Login.css'
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserAction } from '../../redux/slices/users/userSlice';
+import LoadingComponent from '../LoadingComp/LoadingComponent';
 
 
 const Login = () =>{
-
     //dispatch
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -18,20 +22,33 @@ const Login = () =>{
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
+    const onSubmitHandler = (e) => {
+      e.preventDefault();
+      dispatch(loginUserAction({username, password}));
+    }
+
+    //get data from store
+    const {error, loading, userInfo} = useSelector(
+      (state)=> state?.users?.userAuth)
+
+      useEffect(() => {
+        if (userInfo?.data?.userFound) {
+          window.location.href = "/";
+        }
+      }, [userInfo]);
 
     //display page
     return (
-      <body>
+      <div>
           <div className="LoginBox">
               <h1>Login</h1>
-              <form>
+              {error && <p className='displayError'>{error?.message}</p>}
+              <form onSubmit={onSubmitHandler}>
                 <div className="Login">
                     <input name="username" value={username} onChange={onChangeHandler} type="text" />
                     <span ></span>
                     <label>Username</label>
-
                 </div>
-
                 <div className='PasswordBox'>
                 <div className="Login">
                     <input name="password" value={password} onChange={onChangeHandler} type="password" />
@@ -41,11 +58,16 @@ const Login = () =>{
                 </div>
                 </div>
 
+                  <div className="login-button">
+                    {loading ? (<LoadingComponent />) : (
 
-                  <div className="button">
-                    <button>Login</button>
+                    <button className='formbtn'>Login</button>
+                                      
+                  )
+                }
                   </div>
-                  
+
+
                 <div className='Link'>
                 <div className="register">
                     Not a member?<span> </span>
@@ -60,7 +82,7 @@ const Login = () =>{
 
               </form>
             </div>
-      </body>
+      </div>
     );
 }
 

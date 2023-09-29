@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const WBListPage = () =>{
     return(
-        <body>
+        <div>
             <div className='LocationText'>
                 <h1>Location</h1>
             </div>
@@ -19,16 +19,9 @@ const WBListPage = () =>{
                 </div>
 
             
-                <Link to='/login'><div className='Logout'>
-                        <h3>Logout</h3>
-                        <ArrowLeftOnRectangleIcon className='Logouticon'/>
-
-                    </div>
-                </Link>
-
-        </body>
 
 
+        </div>
 
     )
 }

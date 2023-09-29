@@ -1,0 +1,263 @@
+.AddDvDesignPage{
+    margin-top: 2.5%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 75%;
+    transform: translate(-50%, -50%);
+}
+
+.AddDvDesignPage h1{
+    text-align: center;
+    padding: 30px;
+}
+
+.Preview{
+    display: flex;
+    justify-content: end;
+    
+}
+
+.preview-btn{
+    border: none;
+    width: 100px;
+    height: 35px;
+    font-size: 16px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) ;
+
+}
+
+.preview-btn:hover{
+    background: #e2e2e2;
+
+}
+
+.AddDataPage form{
+    box-sizing: border-box;
+
+}
+
+
+form .st-form{
+    position: relative;
+
+    padding-top: 10px;
+    
+}
+
+.st-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    
+}
+
+.vlanid-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 1%;
+
+}
+
+.vlanid-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.vlanid-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+.vlanname-form{
+    padding-left: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.vlanname-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.vlanname-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+
+.nd-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    
+}
+
+.subnet-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1%;
+
+}
+
+.subnet-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.subnet-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+.ip-form{
+    padding-right: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.ip-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.ip-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+.gateway-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 1%;
+
+}
+
+.gateway-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.gateway-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+
+.rd-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    
+}
+
+.hostrange-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 1%;
+
+}
+
+.hostrange-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.hostrange-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+.remark-form{
+    padding-left: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.remark-form label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.remark-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+.dvdesign-button{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px -1px;
+    margin-bottom: 0;
+}
