@@ -79,8 +79,9 @@ form .AddProjectname{
     
 }
 
-.AddDataPage .toAddImg{
+.toAddImg{
     display: flex;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -89,6 +90,7 @@ form .AddProjectname{
     padding: 15px 50px;
     border-radius: 10px;
     width:300%;
+    margin-left: -100%;
     
 
 }

@@ -6,10 +6,24 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComponent from "../LoadingComp/LoadingComponent";
 import { createConfigAction } from "../../redux/slices/configSlice/configSlice";
+import { event } from "animated";
 
 const animetedComponents = makeAnimated();
 
 export default function AddData() {
+
+  //files
+  const  [files, setFiles] = useState([]);
+  const [fileErrs, setFileErrs] = useState([]);
+
+  //const fileChangeHandler
+  const  fileHandleChange = (event) =>{
+    const newFiles = Array.from(event.target.files);
+    setFiles(newFiles);
+
+  }
+
+  //filetypes
   const filetypes = [
     "Network System",
     "Firewall System",
@@ -43,7 +57,8 @@ export default function AddData() {
   const [formData, setFormData] = useState({
     projectname: "",
     locationname: "",
-    filetype: "",
+    filetypes: "",
+
   });
 
   const { projectname, locationname } = formData;
@@ -56,15 +71,15 @@ export default function AddData() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(createConfigAction(formData))
-    console.log(formData);
-    console.log(filetypeOption);
 
-    // setFormData({
-    //     projectname: "",
-    //     locationname: "",
-    //     filetype: "",
-    // })
+    dispatch(createConfigAction({
+      ...formData,
+      files,
+      filetypes: filetypeOption.label
+
+    }))
+
+
   };
 
   //   useEffect(() => {
@@ -112,7 +127,10 @@ export default function AddData() {
         <div className="addimg">
           Upload Image
           <div className="addimg-btn">
-            <input multiple type="file" />
+            <input multiple 
+            onChange={fileHandleChange}
+            type="file"
+             />
           </div>
         </div>
 

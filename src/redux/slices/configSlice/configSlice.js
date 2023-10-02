@@ -17,30 +17,40 @@ const initialState = {
 export const createConfigAction = createAsyncThunk(
   "config/addnew",
   async (payload, { rejectWithValue, getState, dispatch }) => {
+    console.log(payload);
     try {
-      const { projectname, locationname, filetypes } = payload;
+      const { projectname, locationname, filetypes, files } = payload;
 
       //TokenAuthen
       const token = getState()?.users?.userAuth?.userInfo?.data?.token;
       const tokenConfig = {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
       };
+
+      //form Data
+      const formData = new FormData();
+      formData.append("projectname", projectname);
+      formData.append("locationname", locationname);
+      formData.append("filetypes", filetypes)
+
+      files.forEach((file) => {
+        formData?.append("files", file);
+      });
 
       //make request
       const data = await axios.post(
         `${baseURL}/config/addnew`,
-        {
-          projectname,
-          locationname,
-          filetypes,
-        },
+        formData,
         tokenConfig
       );
 
+      console.log();
       return data;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error?.response?.data);
     }
   }
