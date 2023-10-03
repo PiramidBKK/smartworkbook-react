@@ -10,6 +10,8 @@ import AddData from './components/AddNew/AddData';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 import DvDesign from './components/AddNew/DvDesign/DvDesign';
 import DvLogin from './components/AddNew/DvLogin/Dvlogin';
+import Swdetail from './components/AddNew/SwDetail/Swdetail';
+import SwitchInterface from './components/AddNew/SwInterface/Swinterface';
 
 
 function App() {
@@ -31,18 +33,37 @@ function App() {
               <AddData />
             </AuthRoute>
           } />         
-          <Route path='addnew/dvdesign' element={
+          <Route path='dvdesign' element={
             <AuthRoute>
               <DvDesign />
             </AuthRoute>} />
 
-          <Route path='addnew/dvlogin' element={
+          <Route path='dvlogin' element={
             <AuthRoute>
               <DvLogin />
             </AuthRoute>
-          }>
+          } />
 
-          </Route>
+                   
+
+          <Route path='swinterface' element={
+            <AuthRoute>
+              <SwitchInterface />
+            </AuthRoute>
+          } />         
+
+          <Route path='swdetail' element={
+            <AuthRoute>
+              <Swdetail />
+            </AuthRoute>
+          } />
+
+          <Route path='wbdetail' element={
+            <AuthRoute>
+              <WBDetail />
+            </AuthRoute>
+          } />
+
                    
         </Routes>
         

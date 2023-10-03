@@ -5,8 +5,6 @@
 
 }
 
-
-
 .filterTab{
     display: flex;
     justify-content: end;
@@ -36,9 +34,8 @@
 
 .line{
     width: 80%;
-    height: 1.5px;
-    background-color: black;
-    left: 70%;
+    border: solid 1px;
+
 
 }
 

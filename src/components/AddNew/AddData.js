@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingComponent from "../LoadingComp/LoadingComponent";
 import { createConfigAction } from "../../redux/slices/configSlice/configSlice";
 import { event } from "animated";
+import { useEffect } from "react";
 
 const animetedComponents = makeAnimated();
 
@@ -37,6 +38,7 @@ export default function AddData() {
     "Access Control",
     "Digital Signage",
     "Cabling",
+    "Other"
   ];
 
   const [filetypeOption, setFiletypeOption] = useState([]);
@@ -79,20 +81,21 @@ export default function AddData() {
 
     }))
 
-
   };
 
-  //   useEffect(() => {
-  //     if (userInfo?.data?.userFound) {
-  //       window.location.href = "/";
-  //     }
-  //   }, [userInfo]);
+    useEffect(() => {
+      if (config?.data) {
+        window.location.href = "/";
+      }
+    },[config]);
 
   return (
     <div className="AddDataPage">
       <h1>ADD DATA</h1>
       <form onSubmit={onSubmitHandler}>
         <div className="AddProjectname">
+        {error && <p className='displayError-add-data'>{error?.message}</p>}
+
           <label>Projectname</label>
           <input
             name="projectname"
@@ -114,7 +117,7 @@ export default function AddData() {
           <label>Type</label>
 
           <Select
-            // components={animetedComponents}
+            components={animetedComponents}
             name="filetypes"
             className="selectTypes"
             options={filetypeOptionsConverted}

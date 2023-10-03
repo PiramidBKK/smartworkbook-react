@@ -75,6 +75,7 @@ const configSlice = createSlice({
       state.config = null;
       state.isAdded = false;
       state.error = action.payload;
+      
     });
   },
 });

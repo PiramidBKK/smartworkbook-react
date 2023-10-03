@@ -1,10 +1,8 @@
 .AddDvDesignPage{
-    margin-top: 2.5%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 75%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20%;
 }
 
 .AddDvDesignPage h1{
@@ -274,5 +272,36 @@ form .st-form{
     background: none;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+
+}
+
+.next-btn :hover{
+    background: #af1313;
+
+
+}
+
+.back{
+    background: #676767;
+    padding: 15px 50px;
+    border-radius: 10px;
+    
+}
+
+
+.back h3{
+    color: black;
+    align-items: center;
+}
+
+.back-btn{
+    border: none;
+    background: none;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.back-btn :hover{
+    background: #525252;
 
 }

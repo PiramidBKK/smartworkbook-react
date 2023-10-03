@@ -1,0 +1,180 @@
+.AddSwInterface{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3% 20% 5% 20%;
+}
+
+.AddSwInterface h1{
+    text-align: center;
+}
+
+.AddSwInterface form{
+    box-sizing: border-box;
+    margin-top: 2%;
+
+}
+
+.description-form{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 1%;
+
+}
+
+.description-form label{
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.description-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+
+.connectto-form{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1%;
+
+}
+
+.connectto-form label{
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.connectto-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+
+
+.vlanid-interface-form{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 1%;
+
+}
+
+.vlanid-interface-form label{
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.vlanid-interface-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+
+.mode-form{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1%;
+
+}
+
+.mode-form label{
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.mode-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+
+.label-form{
+    padding-top: 1%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 1%;
+
+}
+
+.label-form label{
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.label-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+
+.remark-interface-form{
+    padding-top: 1%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1%;
+
+}
+
+.remark-interface-form label{
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.remark-interface-form input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+

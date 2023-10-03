@@ -42,9 +42,7 @@ export default function DvDesign  (){
       <h1>ADD Vlan</h1>
 
       <div className="Preview">
-        <button className="preview-btn">
-          Preview
-        </button>
+        <button className="preview-btn">Preview</button>
       </div>
 
       <form onSubmit={onSubmitHandler}>
@@ -114,11 +112,11 @@ export default function DvDesign  (){
         </div>
 
         <div className="dvdesign-button">
-          <button className="back-btn">
+          <Link to="/" className="back-btn">
             <div className="back">
               {loading ? <LoadingComponent /> : <h3>Back</h3>}
             </div>
-          </button>
+          </Link>
 
           <button className="next-btn">
             <div className="next">
