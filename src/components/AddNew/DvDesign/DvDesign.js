@@ -33,17 +33,9 @@ export default function DvDesign  (){
     remark
   } = formData
 
-  // const onSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   dispatch(({
-  //   vlanid: "",
-  //   vlanname: "",
-  //   subnet: "",
-  //   ip: "",
-  //   gateway: "",
-  //   hostrange: "",
-  //   remark: "",}))
-  // }
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+  }
 
   return (
     <div className="AddDvDesignPage">
@@ -55,7 +47,7 @@ export default function DvDesign  (){
         </button>
       </div>
 
-      <form>
+      <form onSubmit={onSubmitHandler}>
         <div className="st-form">
           <div className="vlanid-form">
             <label>Vlan ID</label>

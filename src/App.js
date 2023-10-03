@@ -9,6 +9,7 @@ import Forgotpass from './components/Authen/Forgot';
 import AddData from './components/AddNew/AddData';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 import DvDesign from './components/AddNew/DvDesign/DvDesign';
+import DvLogin from './components/AddNew/DvLogin/Dvlogin';
 
 
 function App() {
@@ -30,7 +31,18 @@ function App() {
               <AddData />
             </AuthRoute>
           } />         
-          <Route path='addnew/dvdesign' element={<DvDesign />} />
+          <Route path='addnew/dvdesign' element={
+            <AuthRoute>
+              <DvDesign />
+            </AuthRoute>} />
+
+          <Route path='addnew/dvlogin' element={
+            <AuthRoute>
+              <DvLogin />
+            </AuthRoute>
+          }>
+
+          </Route>
                    
         </Routes>
         
