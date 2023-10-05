@@ -1,21 +1,16 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+const { createAsyncThunk } = require("@reduxjs/toolkit");
 
-//reset error action 
-export const resetErrAction = createAsyncThunk(
-    'resetErrAction', () =>{
-        return {
-            
-        };
-    }
-)
+//reset error action
 
+export const resetErrAction = createAsyncThunk("resetErr-Action", () => {
+  return {};
+});
 
-//reset successs action 
+//reset success action
+
 export const resetSuccessAction = createAsyncThunk(
-    'resetErrAction', () =>{
-        return {
-
-        };
-    }
-)
-
+  "resetSuccess-Action",
+  () => {
+    return {};
+  }
+);

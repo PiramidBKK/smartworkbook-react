@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComponent from "../LoadingComp/LoadingComponent";
 import { createConfigAction } from "../../redux/slices/configSlice/configSlice";
-import { event } from "animated";
 import { useEffect } from "react";
 
 const animetedComponents = makeAnimated();
@@ -20,9 +19,25 @@ export default function AddData() {
   //const fileChangeHandler
   const  fileHandleChange = (event) =>{
     const newFiles = Array.from(event.target.files);
-    setFiles(newFiles);
+    const newErrs = [];
+    
+    //file validation
+    newFiles.forEach(file=>{
+      if(file?.size > 2000000){
+        fileErrs.push(`${file?.name} is too large`)
+      }
+      if (!file?.type?.startsWith("image/")) {
+        newErrs.push(`${file?.name} is not an image`);
+      }
+    }
+  )
 
-  }
+    setFiles(newFiles);
+    setFileErrs(newErrs);
+
+  };
+
+
 
   //filetypes
   const filetypes = [
@@ -69,25 +84,41 @@ export default function AddData() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const { config, loading, error } = useSelector((state) => state?.configs);
+  //get data from store
+  const { config, isAdded, loading, error } = useSelector((state) => state?.configs);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(createConfigAction({
-      ...formData,
-      files,
-      filetypes: filetypeOption.label
+    dispatch(
+      createConfigAction({
+        ...formData,
+        files,
+        filetypes: filetypeOption.label,
+      })
+    );
 
-    }))
+    setSubmitButtonClicked(true);
 
+    console.log(config);
+
+    //setFormData
+    const setFormData = {
+      projectname: "",
+      locationname: "",
+      filetypes: "",
+    };
   };
 
+  const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+
+  const newProjectId = config?.data?.config._id
+
     useEffect(() => {
-      if (config?.data) {
-        window.location.href = "/";
+      if (submitButtonClicked && config?.data?.config) {
+        window.location.href = `/wbdetail/${newProjectId}`;
       }
-    },[config]);
+    },[config], [submitButtonClicked]);
 
   return (
     <div className="AddDataPage">
@@ -144,7 +175,10 @@ export default function AddData() {
           {loading ? (
             <LoadingComponent />
           ) : (
-            <button className="next-btn-adddata">
+            <button 
+            className="next-btn-adddata" 
+            type="submit" 
+            >
               <div className="next-long">
                 <h3>Next</h3>
               </div>

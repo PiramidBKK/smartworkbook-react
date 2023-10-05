@@ -36,10 +36,68 @@
     width: 80%;
     border: solid 1px;
 
+}
+
+.Project-label{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10% 0 10%;
+}
+
+.Location-Data{
+    background: #d1d1d1;
+    width: 68%;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    margin-left: 15%;
+    margin-top: 1%;
+    padding: 0.5% 0 0 0;
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-y: overlay;
 
 }
 
+.config-item{
+    position: relative;
+    left: 2.5%;
+    right: 2.5%;
+    width: 95%;
+    align-items: center;
+}
 
+
+
+.fetched-text{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    padding-top: 1%;
+}
+
+.project-line{
+    border: 1px solid;
+}
+
+.fetched-projectname{
+    width: 35%;
+    text-align: center;
+    align-items: center;
+
+}
+
+.fetched-location{
+    padding-right:2%;
+    width: 30%;
+    text-align: center;
+}
+
+.fetched-filetype {
+    width: 30%;
+    text-align: center;
+
+
+}
 
 
 

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
+import { resetErrAction, resetSuccessAction } from "../users/globalActions/globalActions";
 
 //initial state
 const initialState = {
@@ -47,11 +48,61 @@ export const createConfigAction = createAsyncThunk(
         tokenConfig
       );
 
-      console.log();
       return data;
     } catch (error) {
       console.log(error);
       return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//Fetch All workbook
+export const fetchconfigsAction = createAsyncThunk(
+  'config/list',
+  async(payload, {rejectWithValue, getState, dispatch}) =>{
+    try{
+
+      const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+      const tokenConfig = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const data = await axios.get(
+        `${baseURL}/config`,tokenConfig
+      )
+      
+        return data;
+    }catch(error){
+      console.log(error);
+      return rejectWithValue(error?.response?.data)
+    }
+  }
+);
+
+//Fetch Single workbook
+export const fetchconfigAction = createAsyncThunk(
+  'config/details',
+  async(configId, {rejectWithValue, getState, dispatch}) =>{
+    console.log(configId);
+    try{
+
+      const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+      const tokenConfig = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const data = await axios.get(
+        `${baseURL}/config/${configId}`,tokenConfig
+      )
+      
+        return data;
+    }catch(error){
+      console.log(error);
+      return rejectWithValue(error?.response?.data)
     }
   }
 );
@@ -70,12 +121,58 @@ const configSlice = createSlice({
       state.config = action.payload;
       state.isAdded = true;
     });
+
     builder.addCase(createConfigAction.rejected, (state, action) => {
       state.loading = false;
       state.config = null;
       state.isAdded = false;
       state.error = action.payload;
       
+    });
+
+    //fetch all
+    builder.addCase(fetchconfigsAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchconfigsAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.configs = action.payload;
+      state.isAdded = true;
+    });
+
+    builder.addCase(fetchconfigsAction.rejected, (state, action) => {
+      state.loading = false;
+      state.configs = null;
+      state.isAdded = false;
+      state.error = action.payload;
+      
+    });
+
+    //fetch one
+    builder.addCase(fetchconfigAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchconfigAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.config = action.payload;
+      state.isAdded = true;
+    });
+
+    builder.addCase(fetchconfigAction.rejected, (state, action) => {
+      state.loading = false;
+      state.config = null;
+      state.isAdded = false;
+      state.error = action.payload;
+      
+    });
+
+    builder.addCase(resetErrAction.pending, (state) =>{
+      state.error = null
+    });
+
+    builder.addCase(resetSuccessAction.pending, (state) =>{
+      state.isAdded = false
+
     });
   },
 });

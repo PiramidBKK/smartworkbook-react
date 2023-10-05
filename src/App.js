@@ -58,7 +58,7 @@ function App() {
             </AuthRoute>
           } />
 
-          <Route path='wbdetail' element={
+          <Route path='wbdetail/:id' element={
             <AuthRoute>
               <WBDetail />
             </AuthRoute>
