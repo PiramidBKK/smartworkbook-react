@@ -16,7 +16,7 @@ const initialState ={
 //create dvdesign
 export const createDvdesignAction = createAsyncThunk(
     'dvdesign/addnew',
-    async(payload, {rejectWithValue, getState, dispatch}) =>{
+    async(payload, configId, {rejectWithValue, getState, dispatch}) =>{
         try{
             const {    
                 vlanid,
@@ -45,7 +45,7 @@ export const createDvdesignAction = createAsyncThunk(
 
             //make request
             const data = await axios.post(
-                `${baseURL}/dvdesign/addnew`,
+                `${baseURL}/dvdesign/addnew/${configId}`,
                 formData,
                 tokenConfig
 

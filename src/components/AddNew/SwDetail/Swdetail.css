@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 1% 20% 0% 20%;
+    overflow-y: scroll; /* เพิ่มบรรทัดนี้เพื่อเปิดใช้งานการเลื่อนแนวดิ่ง */
 
 }
 
@@ -12,7 +13,7 @@
 
 .AddSwDetailPage form{
     box-sizing: border-box;
-    margin-top: -1%;
+    margin-top: 0%;
 
 }
 
@@ -353,4 +354,56 @@
 
 }
 
+.swdetail-button{
+    display: flex;
+    justify-content: space-between;
+    margin:1.5% -1px;
+    margin-bottom: 0;
+    
+}
+
+.next-swdetail{
+    background: #E61818;
+    padding: 15px 50px;
+    border-radius: 10px;
+}
+
+.next-btn-swdetail{
+    border: none;
+    background: none;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+}
+
+.next-btn-swdetail :hover{
+    background: #af1313;
+
+
+}
+
+.back-swdetail{
+    background: #676767;
+    padding: 15px 50px;
+    border-radius: 10px;
+    
+}
+
+
+.back-swdetail h3{
+    color: black;
+    align-items: center;
+}
+
+.back-btn-swdetail{
+    border: none;
+    background: none;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.back-btn-swdetail :hover{
+    background: #525252;
+
+}
 

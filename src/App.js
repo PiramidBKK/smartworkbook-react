@@ -33,12 +33,12 @@ function App() {
               <AddData />
             </AuthRoute>
           } />         
-          <Route path='dvdesign' element={
+          <Route path='dvdesign/:id' element={
             <AuthRoute>
               <DvDesign />
             </AuthRoute>} />
 
-          <Route path='dvlogin' element={
+          <Route path='dvlogin/:id' element={
             <AuthRoute>
               <DvLogin />
             </AuthRoute>
@@ -46,13 +46,13 @@ function App() {
 
                    
 
-          <Route path='swinterface' element={
+          <Route path='swinterface/:id' element={
             <AuthRoute>
               <SwitchInterface />
             </AuthRoute>
           } />         
 
-          <Route path='swdetail' element={
+          <Route path='swdetail/:id' element={
             <AuthRoute>
               <Swdetail />
             </AuthRoute>

@@ -22,26 +22,26 @@ export default function WBDetail() {
     return(
         <div className='wbdetail-body'>
             <div className='select'>
-                <Link to='/dvdesign'>
+                <Link to={`/dvdesign/${id}`} key={id}>
                 <label className='labelBox'>
                     <div className='dvdesign'>Device Design</div>
                 </label>
                 </Link>
                 
-                <Link to='/swdetail'>
+                <Link to={`/swdetail/${id}`} key={id}>
                 <label className='labelBox'>
                     <div className='swdetail'>Switch Detail</div>
                 </label>
 
                 </Link>
 
-                <Link to='/swinterface'>
+                <Link to={`/swinterface/${id}`} key={id}>
                 <label className='labelBox'>
                     <div className='swinterface'>Switch Interfaces</div>
                 </label>
                 </Link>
 
-                <Link to='/dvlogin'>
+                <Link to={`/dvlogin/${id}`} key={id}>
                 <label className='labelBox'>
                     <div className='dvlogin'>Device Login</div>
                 </label>
@@ -56,9 +56,8 @@ export default function WBDetail() {
             </div>
 
             <div className="WBDetail-Data">
-
+            
             </div>
-
             
         </div>
     )

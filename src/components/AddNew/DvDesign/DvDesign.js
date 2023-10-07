@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './DvDesign.css'
 import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import LoadingComponent from '../../LoadingComp/LoadingComponent';
+import LoadingComponent from '../../LoadingComp/LoadingComponent'
+
 
 export default function DvDesign  (){
+  const {id} = useParams
+
   //dispatch
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -37,6 +40,10 @@ export default function DvDesign  (){
     e.preventDefault();
 
   }
+
+  useState(()=>{
+
+  })
 
 
 

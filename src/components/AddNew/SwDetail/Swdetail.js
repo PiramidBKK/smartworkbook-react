@@ -51,6 +51,7 @@ export default function Swdetail (){
     return (
       <div className="AddSwDetailPage">
         <h1>Switch Details</h1>
+
         <div className="Preview">
           <button className="preview-btn">Preview</button>
         </div>
@@ -172,15 +173,15 @@ export default function Swdetail (){
 
           </div>
 
-          <div className="dvdesign-button">
-          <Link to='/' className="back-btn">
-              <div className="back">
+          <div className="swdetail-button">
+          <Link to='/' className="back-btn-swdetail">
+              <div className="back-swdetail">
                 {loading ? <LoadingComponent /> : <h3>Back</h3>}
               </div>
             </Link>
 
-            <button className="next-btn">
-              <div className="next">
+            <button className="next-btn-swdetail">
+              <div className="next-swdetail">
                 {loading ? <LoadingComponent /> : <h3>Next</h3>}
               </div>
             </button>

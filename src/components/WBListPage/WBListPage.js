@@ -26,22 +26,6 @@ const WBListPage = () =>{
 
     const configData = configs?.data?.config
 
-    const filetypeOptions = [
-      "Network System",
-      "Firewall System",
-      "Server System",
-      "CCTV System",
-      "Telephone System",
-      "IPTV System",
-      "Internet Gateway",
-      "Clients (PC , Laptop)",
-      "WiFi System",
-      "Access Control",
-      "Digital Signage",
-      "Cabling",
-      "Other",
-    ]
-
     // let configURL = `${baseURL}/config`
 
     return (

@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 0 20%;
+    max-width: 100%;
+
 }
 
 .AddDvDesignPage h1{
@@ -35,12 +37,12 @@
 .AddDataPage form{
     box-sizing: border-box;
 
+
 }
 
 
 form .st-form{
     position: relative;
-
     padding-top: 10px;
     
 }
