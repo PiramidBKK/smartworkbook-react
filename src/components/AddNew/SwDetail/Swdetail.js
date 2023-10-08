@@ -56,6 +56,7 @@ export default function Swdetail (){
           <button className="preview-btn">Preview</button>
         </div>
         <form onSubmit={onSubmitHandler}>
+          <div className='main-form'>
           <div className="st-form">
             <div className="hostname-form">
               <label>Hostname</label>
@@ -185,6 +186,7 @@ export default function Swdetail (){
                 {loading ? <LoadingComponent /> : <h3>Next</h3>}
               </div>
             </button>
+          </div>
           </div>
         </form>
         

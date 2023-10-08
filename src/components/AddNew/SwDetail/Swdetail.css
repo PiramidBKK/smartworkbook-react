@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 1% 20% 0% 20%;
-    overflow-y: scroll; /* เพิ่มบรรทัดนี้เพื่อเปิดใช้งานการเลื่อนแนวดิ่ง */
+    padding: 1% 15% 0% 15%;
+
 
 }
 
@@ -20,29 +20,40 @@
 
 .fourth-form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    
+
 }
 
-
+@media screen and (max-width: 600px) {
+    .fourth-form{
+        display: block;
+        
+    }
+}
   
 
 .fifth-form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    
+
+}
+
+
+@media screen and (max-width: 600px) {
+    .fifth-form{
+        display: block;
+        
+    }
 }
 
 .sixth-form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    
+
+}
+
+@media screen and (max-width: 600px) {
+    .sixth-form{
+        display: block;
+        
+    }
 }
 
 .hostname-form{
@@ -357,9 +368,7 @@
 .swdetail-button{
     display: flex;
     justify-content: space-between;
-    margin:1.5% -1px;
-    margin-bottom: 0;
-    
+    padding:1.5% 0px;
 }
 
 .next-swdetail{

@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 20%;
-    max-width: 100%;
+    padding: 0 15%;
 
 }
+
 
 .AddDvDesignPage h1{
     text-align: center;
@@ -36,30 +36,43 @@
 
 .AddDataPage form{
     box-sizing: border-box;
+    
 
+}
+
+.main-form{
+    max-height: 70vh;
+    overflow-y: scroll;
+    overflow: overlay;
+    padding-bottom: 20px;
 
 }
 
 
 form .st-form{
-    position: relative;
     padding-top: 10px;
     
 }
 
 .st-form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
     
 }
+
+@media screen and (max-width: 600px) {
+    .st-form{
+        display: block;
+        
+    }
+}
+
+
 
 .vlanid-form{
     display: flex;
     flex-direction: column;
-    width: 100%;
     padding-right: 1%;
+    width: 100%;
 
 }
 
@@ -110,10 +123,13 @@ form .st-form{
 
 .nd-form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    
+}
+
+@media screen and (max-width: 600px) {
+    .nd-form{
+        display: block;
+        
+    }
 }
 
 .subnet-form{
@@ -197,10 +213,14 @@ form .st-form{
 
 .rd-form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     
-    
+}
+
+@media screen and (max-width: 600px) {
+    .rd-form{
+        display: block;
+        
+    }
 }
 
 .hostrange-form{
@@ -258,8 +278,8 @@ form .st-form{
 .dvdesign-button{
     display: flex;
     justify-content: space-between;
-    margin:30px -1px;
-    margin-bottom: 0;
+    padding:20px 0px;
+    margin-bottom: 20px;
     
 }
 
@@ -277,11 +297,20 @@ form .st-form{
 
 }
 
+.next h3{
+    color: black;
+    align-items: center;
+}
+
 .next-btn :hover{
     background: #af1313;
 
 
 }
+
+
+
+
 
 .back{
     background: #676767;

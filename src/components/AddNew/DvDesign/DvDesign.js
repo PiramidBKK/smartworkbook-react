@@ -56,6 +56,7 @@ export default function DvDesign  (){
       </div>
 
       <form onSubmit={onSubmitHandler}>
+        <div className='main-form'>
         <div className="st-form">
           <div className="vlanid-form">
             <label>Vlan ID</label>
@@ -133,6 +134,7 @@ export default function DvDesign  (){
               {loading ? <LoadingComponent /> : <h3>Next</h3>}
             </div>
           </button>
+        </div>
         </div>
       </form>
     </div>

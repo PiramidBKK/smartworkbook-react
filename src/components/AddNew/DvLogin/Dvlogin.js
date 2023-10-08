@@ -38,6 +38,7 @@ export default function DvLogin (){
           <button className="preview-btn">Preview</button>
         </div>
         <form onSubmit={onSubmitHandler}>
+          <div className='main-form'>
           <div className="st-form">
             <div className="dvusername-form">
               <label>Username</label>
@@ -90,6 +91,7 @@ export default function DvLogin (){
                 {loading ? <LoadingComponent /> : <h3>Next</h3>}
               </div>
             </button>
+          </div>
           </div>
         </form>
       </div>
