@@ -23,9 +23,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-bottom: 50px;
+        padding-bottom: 15px;
     
     }
+
+
 }
 
 .labelBox{
@@ -40,6 +42,7 @@
     color: black;
 
 }
+
 
 .labelBox:hover{
     background: #b9b9b9;
@@ -81,6 +84,12 @@
     margin-top: 1%;
     padding: 0.5% 0 0 0;
     height: 50vh;
-    overflow-y: scroll;
-    overflow-y: overlay;
+
+}
+
+@media screen and (max-width: 610px) {
+    
+.WBDetail-Data {
+        height: 17vh;
+    }
 }

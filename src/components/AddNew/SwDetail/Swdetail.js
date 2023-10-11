@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Swdetail.css'
 import React, { useEffect,useState } from "react";
 import makeAnimated from "react-select/animated";
@@ -10,6 +10,8 @@ const animetedComponents = makeAnimated();
 
 
 export default function Swdetail (){
+
+  const {id} = useParams();
 
   const [formData, setFormData] = useState({
     hostname: "", 
@@ -175,7 +177,7 @@ export default function Swdetail (){
           </div>
 
           <div className="swdetail-button">
-          <Link to='/' className="back-btn-swdetail">
+          <Link to={`/wbdetail/${id}`} className="back-btn-swdetail">
               <div className="back-swdetail">
                 {loading ? <LoadingComponent /> : <h3>Back</h3>}
               </div>

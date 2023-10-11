@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './Swinterface.css'
 import LoadingComponent from '../../LoadingComp/LoadingComponent'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 export default function SwitchInterface (){
+
+  const {id} = useParams();
 
     const [formData, setFormData] = useState({
         connectto : "",
@@ -116,7 +118,7 @@ export default function SwitchInterface (){
             
   
             <div className="dvdesign-button">
-              <Link to='/' className="back-btn">
+              <Link to={`/wbdetail/${id}`} className="back-btn">
                 <div className="back">
                   {loading ? <LoadingComponent /> : <h3>Back</h3>}
                 </div>

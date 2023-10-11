@@ -31,7 +31,8 @@ export const registerUserAction = createAsyncThunk(
             try{
                 //make http request
                 const data = await axios.post(`${baseURL}/users/register`,
-                    {username,
+                    {
+                    username,
                     password
                 });
                 return data;

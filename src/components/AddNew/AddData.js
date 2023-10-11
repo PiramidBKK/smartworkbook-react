@@ -37,8 +37,6 @@ export default function AddData() {
 
   };
 
-
-
   //filetypes
   const filetypes = [
     "Network System",
@@ -167,17 +165,15 @@ export default function AddData() {
              />
           </div>
         </div>
-
+ 
         <div className="toAddImg">
-
-
 
           {loading ? (
             <LoadingComponent />
           ) : (
             <button 
             className="next-btn-adddata" 
-            type="submit" 
+            type="submit"
             >
               <div className="next-long">
                 <h3>Next</h3>

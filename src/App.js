@@ -12,6 +12,7 @@ import DvDesign from './components/AddNew/DvDesign/DvDesign';
 import DvLogin from './components/AddNew/DvLogin/Dvlogin';
 import Swdetail from './components/AddNew/SwDetail/Swdetail';
 import SwitchInterface from './components/AddNew/SwInterface/Swinterface';
+import Modal from './utils/reactPlayGround';
 
 
 function App() {
@@ -62,6 +63,10 @@ function App() {
             <AuthRoute>
               <WBDetail />
             </AuthRoute>
+          } />
+
+          <Route path='modal' element={
+          <Modal />
           } />
 
                    

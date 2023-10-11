@@ -3,138 +3,154 @@ import './DvDesign.css'
 import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent'
+import { createDvdesignAction, fetchDvdesignsAction } from '../../../redux/slices/dvdesignSlice/dvdesignSlice';
+import Popup from 'reactjs-popup';
 
 
 export default function DvDesign  (){
-  const {id} = useParams
+
+  const {id} = useParams();
 
   //dispatch
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     vlanid: "",
     vlanname: "",
-    subnet: "",
-    ip: "",
+    ipsubnet: "",
     gateway: "",
     hostrange: "",
     remark: "",
-  });
 
-  const {loading} = Selection
+  });
 
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const {
-    vlanid,
-    vlanname,
-    subnet,
-    ip,
-    gateway,
-    hostrange,
-    remark
-  } = formData
+  // const {
+  //   vlanid,
+  //   vlanname,
+  //   ipsubnet,
+  //   gateway,
+  //   hostrange,
+  //   remark,
+    
+  // } = formData
+
+  const { dvdesigns ,isAdded, loading, error } = useSelector((state) => state?.dvdesigns);
+
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    dispatch(createDvdesignAction(
+      { 
+        ...formData,
+        id}
+      ))
+    }
 
-  }
-
-  useState(()=>{
-
-  })
 
 
 
   return (
     <div className="AddDvDesignPage">
       <h1>ADD Vlan</h1>
+      {error && (
+        <p className="displayError-add-data-dvdesign">{error?.message}</p>
+      )}
 
-      <div className="Preview">
-        <button className="preview-btn">Preview</button>
-      </div>
+      {/* <div className="Preview">
+        <div className="preview-btn">Preview</div>
+      </div> */}
+
+      <Popup trigger={<button>Open</button>} modal nested>
+        {(close) => {
+          <button onClick={close}>&times;</button>;
+        }}
+        <div className="hello">
+
+        </div>
+      </Popup>
 
       <form onSubmit={onSubmitHandler}>
-        <div className='main-form'>
-        <div className="st-form">
-          <div className="vlanid-form">
-            <label>Vlan ID</label>
-            <input
-              onChange={onChangeHandler}
-              name="vlanid"
-              value={vlanid}
-            ></input>
-          </div>
-
-          <div className="vlanname-form">
-            <label>Vlan Name</label>
-            <input
-              onChange={onChangeHandler}
-              name="vlanname"
-              value={vlanname}
-            ></input>
-          </div>
-        </div>
-
-        <div className="nd-form">
-          <div className="ip-form">
-            <label>IP Address</label>
-            <input onChange={onChangeHandler} name="ip" value={ip}></input>
-          </div>
-
-          <div className="subnet-form">
-            <label>Subnet</label>
-            <input
-              onChange={onChangeHandler}
-              name="subnet"
-              value={subnet}
-            ></input>
-          </div>
-        </div>
-
-        <div className="gateway-form">
-          <label>Gateway</label>
-          <input
-            onChange={onChangeHandler}
-            name="gateway"
-            value={gateway}
-          ></input>
-        </div>
-
-        <div className="rd-form">
-          <div className="hostrange-form">
-            <label>Host Range</label>
-            <input
-              onChange={onChangeHandler}
-              name="hostrange"
-              value={hostrange}
-            ></input>
-          </div>
-
-          <div className="remark-form">
-            <label>Remark</label>
-            <input
-              onChange={onChangeHandler}
-              name="remark"
-              value={remark}
-            ></input>
-          </div>
-        </div>
-
-        <div className="dvdesign-button">
-          <Link to="/" className="back-btn">
-            <div className="back">
-              {loading ? <LoadingComponent /> : <h3>Back</h3>}
+        <div className="main-form">
+          <div className="st-form">
+            <div className="vlanid-form">
+              <label>Vlan ID</label>
+              <input
+                onChange={onChangeHandler}
+                name="vlanid"
+                value={formData.vlanid}
+              ></input>
             </div>
-          </Link>
 
-          <button className="next-btn">
-            <div className="next">
-              {loading ? <LoadingComponent /> : <h3>Next</h3>}
+            <div className="vlanname-form">
+              <label>Vlan Name</label>
+              <input
+                onChange={onChangeHandler}
+                name="vlanname"
+                value={formData.vlanname}
+              ></input>
             </div>
-          </button>
-        </div>
+          </div>
+
+          <div className="nd-form">
+            <div className="ipsubnet-form">
+              <label>IP/Subnet</label>
+              <input
+                onChange={onChangeHandler}
+                name="ipsubnet"
+                value={formData.ipsubnet}
+              ></input>
+            </div>
+
+            <div className="gateway-form">
+              <label>Gateway</label>
+              <input
+                onChange={onChangeHandler}
+                name="gateway"
+                value={formData.gateway}
+              ></input>
+            </div>
+          </div>
+
+          <div className="rd-form">
+            <div className="hostrange-form">
+              <label>Host Range</label>
+              <input
+                onChange={onChangeHandler}
+                name="hostrange"
+                value={formData.hostrange}
+              ></input>
+            </div>
+
+            <div className="remark-form">
+              <label>Remark</label>
+              <input
+                onChange={onChangeHandler}
+                name="remark"
+                value={formData.remark}
+              ></input>
+            </div>
+          </div>
+
+          <div className="dvdesign-button">
+            <Link to={`/wbdetail/${id}`}  className="back-btn">
+              <div className="back">
+                <h3>Back</h3>
+              </div>
+            </Link>
+
+            {loading ? (
+              <LoadingComponent />
+            ) : (
+              <button className="next-btn" type="submit">
+                <div className="next">
+                  <h3>Next</h3>
+                </div>
+              </button>
+            )}
+          </div>
         </div>
       </form>
     </div>

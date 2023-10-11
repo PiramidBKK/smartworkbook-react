@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Dvlogin.css'
 import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent';
 
 export default function DvLogin (){
+
+  const {id} = useParams();
 
   const [formData, setFormData] = useState({
     devicename: "",
@@ -80,7 +82,7 @@ export default function DvLogin (){
           </div>
 
           <div className="dvdesign-button">
-            <Link to="/" className="back-btn">
+            <Link to={`/wbdetail/${id}`} className="back-btn">
               <div className="back">
                 {loading ? <LoadingComponent /> : <h3>Back</h3>}
               </div>

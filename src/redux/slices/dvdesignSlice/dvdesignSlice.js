@@ -2,11 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
 
+
 const initialState ={
-    loading : false,
-    error: null,
     dvdesigns: [],
     dvdesign : {},
+    loading : false,
+    error: null,
     isAdded: false,
     isUpdated: false,
     isDeleted: false,
@@ -16,36 +17,45 @@ const initialState ={
 //create dvdesign
 export const createDvdesignAction = createAsyncThunk(
     'dvdesign/addnew',
-    async(payload, configId, {rejectWithValue, getState, dispatch}) =>{
+    async( {
+        vlanid,
+        vlanname,
+        ipsubnet,
+        gateway,
+        hostrange,
+        remark, 
+        id
+    } ,{rejectWithValue, getState, dispatch}) =>{
         try{
-            const {    
-                vlanid,
-                vlanname,
-                subnet,
-                ip,
-                gateway,
-                hostrange,
-                remark
-            } = payload;
+            // const {     
+            //     vlanid,
+            //     vlanname,
+            //     ipsubnet,
+            //     gateway,
+            //     hostrange,
+            //     remark, } = payload;
 
-            const token = getState()?.user?.useAuth?.userInfo?.data?.token
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
             const tokenConfig = {
-                headers:{
-                    Authorization: `Bearer ${token}`
-                }
-            }
+              headers: {
+                Authorization: `Bearer ${token}`,
 
+            },
+            };
+
+            const formData = new FormData();
             formData.append("vlanid", vlanid);
             formData.append("vlanname", vlanname);
-            formData.append("subnet", subnet);
-            formData.append("ip", ip);
+            formData.append("ipsubnet", ipsubnet);
             formData.append("gateway", gateway);
             formData.append("hostrange", hostrange);
             formData.append("remark", remark);
 
+            console.log(formData);
+
             //make request
             const data = await axios.post(
-                `${baseURL}/dvdesign/addnew/${configId}`,
+                `${baseURL}/dvdesign/addnew/${id}`,
                 formData,
                 tokenConfig
 
@@ -59,6 +69,7 @@ export const createDvdesignAction = createAsyncThunk(
         }
     }
 );
+
 //Fetch all dvdesign
 export const fetchDvdesignsAction = createAsyncThunk(
     'dvdesign/list',
@@ -75,7 +86,35 @@ export const fetchDvdesignsAction = createAsyncThunk(
             //make request
             const data = await axios.get(
                 `${baseURL}/dvdesign`,
-                formData,
+                tokenConfig
+
+            );
+
+            return data;
+
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);
+        }
+    }
+);
+
+//fetch single dvdesign
+export const fetchSingleDvdesignsAction = createAsyncThunk(
+    'dvdesign/details',
+    async(dvdesignId, {rejectWithValue, getState, dispatch}) =>{
+        try{
+
+            const token = getState()?.user?.useAuth?.userInfo?.data?.token
+            const tokenConfig = {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            //make request
+            const data = await axios.get(
+                `${baseURL}/dvdesign/${dvdesignId}`,
                 tokenConfig
 
             );
@@ -100,13 +139,13 @@ const dvdesignSlice = createSlice({
             state.loading = true;
         });
 
-        builder.addCase(createDvdesignAction.fulfilled, (state) =>{
+        builder.addCase(createDvdesignAction.fulfilled, (state, action) =>{
             state.loading = false;
             state.dvdesign = action.payload;
             state.isAdded = true;
         });
 
-        builder.addCase(createDvdesignAction.rejected, (state) =>{
+        builder.addCase(createDvdesignAction.rejected, (state, action) =>{
             state.loading = false;
             state.dvdesign = null
             state.isAdded = false;
@@ -120,15 +159,15 @@ const dvdesignSlice = createSlice({
             state.loading = true;
         });
 
-        builder.addCase(fetchDvdesignsAction.fulfilled, (state) =>{
+        builder.addCase(fetchDvdesignsAction.fulfilled, (state, action) =>{
             state.loading = false;
-            state.dvdesign = action.payload;
+            state.dvdesigns = action.payload;
             state.isAdded = true;
         });
 
-        builder.addCase(fetchDvdesignsAction.rejected, (state) =>{
+        builder.addCase(fetchDvdesignsAction.rejected, (state, action) =>{
             state.loading = false;
-            state.dvdesign = null
+            state.dvdesigns = null
             state.isAdded = false;
             state.error = action.payload;
 
@@ -137,4 +176,7 @@ const dvdesignSlice = createSlice({
     }
 })
 
-export default dvdesignSlice;
+const dvdesignReducer = dvdesignSlice.reducer
+
+
+export default dvdesignReducer;
