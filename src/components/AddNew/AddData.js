@@ -110,11 +110,11 @@ export default function AddData() {
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
 
-  const newProjectId = config?.data?.config._id
+  const ProjectId = config?.data?.config._id
 
     useEffect(() => {
       if (submitButtonClicked && config?.data?.config) {
-        window.location.href = `/wbdetail/${newProjectId}`;
+        window.location.href = `/wbdetail/${ProjectId}`;
       }
     },[config], [submitButtonClicked]);
 
