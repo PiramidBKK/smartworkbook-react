@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent'
 import { createDvdesignAction, fetchDvdesignsAction } from '../../../redux/slices/dvdesignSlice/dvdesignSlice';
 import Popup from 'reactjs-popup';
+import DvdesignPopup from './DvdesignPopup';
 
 
 export default function DvDesign  (){
@@ -49,7 +50,7 @@ export default function DvDesign  (){
       ))
     }
 
-
+  
 
 
   return (
@@ -59,18 +60,11 @@ export default function DvDesign  (){
         <p className="displayError-add-data-dvdesign">{error?.message}</p>
       )}
 
-      {/* <div className="Preview">
-        <div className="preview-btn">Preview</div>
-      </div> */}
-
-      <Popup trigger={<button>Open</button>} modal nested>
-        {(close) => {
-          <button onClick={close}>&times;</button>;
-        }}
-        <div className="hello">
-
+        <div className="Preview">
+          <button className="preview-btn">Preview</button>
         </div>
-      </Popup>
+
+
 
       <form onSubmit={onSubmitHandler}>
         <div className="main-form">

@@ -7,6 +7,7 @@ import { resetErrAction, resetSuccessAction } from "../users/globalActions/globa
 const initialState = {
   configs: [],
   config: {},
+  dvdesigns: {},
   loading: false,
   error: null,
   isAdded: false,
@@ -154,6 +155,7 @@ const configSlice = createSlice({
     builder.addCase(fetchconfigAction.fulfilled, (state, action) => {
       state.loading = false;
       state.config = action.payload;
+      state.dvdesigns[action.payload.config._id] = action.payload.dvdesigns;
       state.isAdded = true;
     });
 

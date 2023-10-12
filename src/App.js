@@ -13,6 +13,7 @@ import DvLogin from './components/AddNew/DvLogin/Dvlogin';
 import Swdetail from './components/AddNew/SwDetail/Swdetail';
 import SwitchInterface from './components/AddNew/SwInterface/Swinterface';
 import Modal from './utils/reactPlayGround';
+import DvdesignPopup from './components/AddNew/DvDesign/DvdesignPopup';
 
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
           } />
 
           <Route path='modal' element={
-          <Modal />
+          <DvdesignPopup />
           } />
 
                    

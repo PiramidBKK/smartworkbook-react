@@ -1,9 +1,25 @@
+import React, { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDvdesignsAction } from "../../../redux/slices/dvdesignSlice/dvdesignSlice";
+import { useParams } from "react-router-dom";
+
+
+
+
 export default function DvdesignPopup(){
-    useEffect(()=>{
-        dispatch(fetchDvdesignsAction(id))
-      },[id])
+  const dispatch = useDispatch
+
+
+  const { id } = useParams
+
+  console.log(id);
   
-      const dvdesignData = dvdesigns?.data?.dvdesign
-  
-      console.log(dvdesignData);
+
+
+
+      return(
+        <div className="dvdesign-popup">
+          Hello
+        </div>
+      )
 }
