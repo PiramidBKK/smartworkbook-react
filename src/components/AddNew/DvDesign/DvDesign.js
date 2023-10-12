@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent'
 import { createDvdesignAction, fetchDvdesignsAction } from '../../../redux/slices/dvdesignSlice/dvdesignSlice';
 import Popup from 'reactjs-popup';
-import DvdesignPopup from './DvdesignPopup';
+
 
 
 export default function DvDesign  (){
@@ -61,8 +61,11 @@ export default function DvDesign  (){
       )}
 
         <div className="Preview">
-          <button className="preview-btn">Preview</button>
+          <Link to={`/dvdesign-popup/${id}`}>
+            <button className="preview-btn">Preview</button>
+          </Link>
         </div>
+
 
 
 

@@ -66,7 +66,7 @@ function App() {
             </AuthRoute>
           } />
 
-          <Route path='modal' element={
+          <Route path='dvdesign-popup/:id' element={
           <DvdesignPopup />
           } />
 
