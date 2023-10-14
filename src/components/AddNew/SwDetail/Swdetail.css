@@ -372,6 +372,8 @@
 }
 
 .next-swdetail{
+    height: 100%;
+
     background: #E61818;
     padding: 15px 50px;
     border-radius: 10px;
@@ -392,6 +394,7 @@
 }
 
 .back-swdetail{
+    height: 100%;
     background: #676767;
     padding: 15px 50px;
     border-radius: 10px;

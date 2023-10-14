@@ -70,9 +70,9 @@ export default function WBDetail() {
           {loading ? (
             <LoadingComponent />
           ) : hasDvdesign ? (
-            <Link to={`/dvdesign-popup/${id}`}><div className="dvdesing-wbdetail">Vlan Design</div></Link>
+            <Link to={`/dvdesign-popup/${id}`}><div className="dvdesing-wbdetail">Vlan Design</div><div className="vlan-line" />
+            </Link>
           ) : null}
-          <div className="vlan-line" />
         </div>
       </div>
     );}
