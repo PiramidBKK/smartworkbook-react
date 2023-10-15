@@ -14,67 +14,107 @@ import Swdetail from './components/AddNew/SwDetail/Swdetail';
 import SwitchInterface from './components/AddNew/SwInterface/Swinterface';
 import Modal from './utils/reactPlayGround';
 import DvdesignPopup from './components/AddNew/DvDesign/DvdesignPopup';
+import DvloginPopup from './components/AddNew/DvLogin/DvloginPopup';
+import SwdetailPopup from './components/AddNew/SwDetail/SwdetailPopup';
 
 
 function App() {
   return (
     <div className="App">
-
       <BrowserRouter>
         {/* headerpath */}
         <HomePageHeader />
         <Routes>
-          {/* bodypath */}     
-          <Route  path='/' element={<WBListPage />}/>
-          <Route  path='login' element={<Login/>}/>
-          <Route  path='register' element={<Register/>}/>
-          <Route path='workbook' element={<WBDetail />}/>
-          <Route path='forgotpass' element={<Forgotpass />} />
-          <Route path='addnew' element={
-            <AuthRoute>
-              <AddData />
-            </AuthRoute>
-          } />         
-          <Route path='dvdesign/:id' element={
-            <AuthRoute>
-              <DvDesign />
-            </AuthRoute>} />
+          {/* bodypath */}
+          <Route path="/" element={<WBListPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="workbook" element={<WBDetail />} />
+          <Route path="forgotpass" element={<Forgotpass />} />
+          <Route
+            path="addnew"
+            element={
+              <AuthRoute>
+                <AddData />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="dvdesign/:id"
+            element={
+              <AuthRoute>
+                <DvDesign />
+              </AuthRoute>
+            }
+          />
 
-          <Route path='dvlogin/:id' element={
-            <AuthRoute>
-              <DvLogin />
-            </AuthRoute>
-          } />
+          <Route
+            path="dvlogin/:id"
+            element={
+              <AuthRoute>
+                <DvLogin />
+              </AuthRoute>
+            }
+          />
 
-                   
+          <Route
+            path="swinterface/:id/:switchId"
+            element={
+              <AuthRoute>
+                <SwitchInterface />
+              </AuthRoute>
+            }
+          />
 
-          <Route path='swinterface/:id' element={
-            <AuthRoute>
-              <SwitchInterface />
-            </AuthRoute>
-          } />         
+          <Route
+            path="swdetail/:id"
+            element={
+              <AuthRoute>
+                <Swdetail />
+              </AuthRoute>
+            }
+          />
 
-          <Route path='swdetail/:id' element={
-            <AuthRoute>
-              <Swdetail />
-            </AuthRoute>
-          } />
+          <Route
+            path="wbdetail/:id"
+            element={
+              <AuthRoute>
+                <WBDetail />
+              </AuthRoute>
+            }
+          />
 
-          <Route path='wbdetail/:id' element={
-            <AuthRoute>
-              <WBDetail />
-            </AuthRoute>
-          } />
+          <Route
+            path="dvdesign-popup/:id"
+            element={
+              <AuthRoute>
+                <DvdesignPopup />
+              </AuthRoute>
+            }
+          />
 
-          <Route path='dvdesign-popup/:id' element={
-          <DvdesignPopup />
-          } />
+          <Route
+            path="dvlogin-popup/:id"
+            element={
+              <AuthRoute>
+                <DvloginPopup />
+              </AuthRoute>
+            }
+          />
 
-                   
+          <Route
+            path="swdetail-popup/:id"
+            element={
+              <AuthRoute>
+                <SwdetailPopup />
+              </AuthRoute>
+            }
+          />
+
+
+
         </Routes>
-        
       </BrowserRouter>
-
     </div>
   );
 }

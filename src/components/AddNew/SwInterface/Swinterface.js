@@ -2,11 +2,17 @@ import { useState } from 'react'
 import './Swinterface.css'
 import LoadingComponent from '../../LoadingComp/LoadingComponent'
 import { Link, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
 
 
 export default function SwitchInterface (){
 
-  const {id} = useParams();
+  const dispatch = useDispatch();
+
+  const {id, switchId } = useParams();
+
 
     const [formData, setFormData] = useState({
         connectto : "",
@@ -26,22 +32,35 @@ export default function SwitchInterface (){
         remark
     } = formData
 
-    
-  const {loading} = Selection
+    const {config, error, loading} = useSelector((state)=>
+        state?.configs
+    );
 
+
+    useEffect(()=>{
+      dispatch(fetchconfigAction(id));
+
+  },[id]);
+
+  const configData = config?.data?.config?.swdetails;
+
+  const switchName = configData?.find((swdetail)=>swdetail._id === switchId)
+
+  
   const onChangeHandler = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
   const onSubmitHandler = (e) =>{
     e.preventDefault();
+    console.log(id);
 
   }
 
 
     return(
         <div className="AddSwInterface">
-        <h1>Switch Details</h1>
+        <h1>Switch Interface : {switchName ? switchName.hostname : null}</h1>
         <div className="Preview">
           <button className="preview-btn">Preview</button>
         </div>
@@ -120,15 +139,19 @@ export default function SwitchInterface (){
             <div className="dvdesign-button">
               <Link to={`/wbdetail/${id}`} className="back-btn">
                 <div className="back">
-                  {loading ? <LoadingComponent /> : <h3>Back</h3>}
+                  <h3>Back</h3>
                 </div>
               </Link>
   
-              <button className="next-btn">
+              {loading ? (
+              <LoadingComponent />
+            ) : (
+              <button className="next-btn" type="submit">
                 <div className="next">
-                  {loading ? <LoadingComponent /> : <h3>Next</h3>}
+                  <h3>Next</h3>
                 </div>
               </button>
+            )}
             </div>
           </div>
         </form>

@@ -34,6 +34,12 @@
 
 }
 
+.add-new-all :hover{
+    background: #4f53d3;
+    border-radius: 10px;
+
+}
+
 .plus-icon{
     width: 40px;
 }

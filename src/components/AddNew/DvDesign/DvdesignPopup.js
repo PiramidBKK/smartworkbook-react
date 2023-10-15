@@ -48,7 +48,6 @@ export default function DvdesignPopup(){
               <td>{dvdesign.gateway}</td>
               <td>{dvdesign.hostrange}</td>
               <td>{dvdesign.remark}</td>
-              {/* Add more table data cells as needed */}
             </tr>
           ))}
         </tbody>

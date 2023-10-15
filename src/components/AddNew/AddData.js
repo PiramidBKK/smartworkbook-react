@@ -98,8 +98,6 @@ export default function AddData() {
 
     setSubmitButtonClicked(true);
 
-    console.log(config);
-
     //setFormData
     const setFormData = {
       projectname: "",

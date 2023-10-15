@@ -4,14 +4,17 @@ import React, { useEffect,useState } from "react";
 import makeAnimated from "react-select/animated";
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent';
-import Select from 'react-select';
+import { createSwDetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
+import Select from "react-select";
 
 const animetedComponents = makeAnimated();
 
 
 export default function Swdetail (){
+  const dispatch = useDispatch();
 
   const {id} = useParams();
+
 
   const [formData, setFormData] = useState({
     hostname: "", 
@@ -39,7 +42,7 @@ export default function Swdetail (){
     remark 
   } = formData
 
-  const {loading} = Selection
+  const {swdetail, isAdded,loading, error} = useSelector((state)=> state?.swdetail)
 
     const onChangeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,7 +50,8 @@ export default function Swdetail (){
 
     const onSubmitHandler = (e) =>{
       e.preventDefault();
-
+      dispatch(createSwDetailAction({...formData ,id}));
+      
     }
 
     return (
@@ -179,15 +183,21 @@ export default function Swdetail (){
           <div className="swdetail-button">
           <Link to={`/wbdetail/${id}`} className="back-btn-swdetail">
               <div className="back-swdetail">
-                {loading ? <LoadingComponent /> : <h3>Back</h3>}
+                <h3>Back</h3>
               </div>
             </Link>
 
-            <button className="next-btn-swdetail">
-              <div className="next-swdetail">
-                {loading ? <LoadingComponent /> : <h3>Next</h3>}
-              </div>
-            </button>
+
+
+            {loading ? (
+              <LoadingComponent />
+            ) : (
+              <button className="next-btn-swdetail" type="submit">
+                <div className="next-swdetail">
+                  <h3>Next</h3>
+                </div>
+              </button>
+            )}
           </div>
           </div>
         </form>

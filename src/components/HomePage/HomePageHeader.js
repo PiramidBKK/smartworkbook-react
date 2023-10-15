@@ -26,7 +26,7 @@ const HomePageHeader = () =>{
           <div className="navbar">
             {isLoggedIn && (
               <>
-                <Link to="/addnew">
+                <Link to="/addnew" className='add-new-all'>
                   <div className="addnew">
                     <PlusCircleIcon className="plus-icon" />
                     <div className="text">Add New</div>

@@ -34,7 +34,6 @@ export default function DvLogin (){
     const onSubmitHandler = (e) =>{
       e.preventDefault();
       dispatch(createDvloginAction({...formData ,id}))
-      console.log(formData);
 
     }
 
@@ -45,7 +44,9 @@ export default function DvLogin (){
         <p className="displayError-add-data-dvdesign">{error?.message}</p>
       )}
         <div className="Preview">
-          <button className="preview-btn">Preview</button>
+          <Link to={`/dvlogin-popup/${id}`}>
+            <button className="preview-btn">Preview</button>
+          </Link>
         </div>
         <form onSubmit={onSubmitHandler}>
           <div className="main-form">

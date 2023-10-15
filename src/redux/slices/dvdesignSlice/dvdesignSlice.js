@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
+import { resetErrAction, resetSuccessAction } from "../users/globalActions/globalActions";
 
 
 const initialState ={
@@ -50,8 +51,6 @@ export const createDvdesignAction = createAsyncThunk(
             formData.append("gateway", gateway);
             formData.append("hostrange", hostrange);
             formData.append("remark", remark);
-
-            console.log(formData);
 
             //make request
             const data = await axios.post(
@@ -172,6 +171,16 @@ const dvdesignSlice = createSlice({
             state.error = action.payload;
 
         });
+        
+        //reset err
+        builder.addCase(resetErrAction.pending, (state) => {
+            state.error = null;
+          });
+  
+          //reset success
+          builder.addCase(resetSuccessAction.pending, (state) => {
+            state.isAdded = false;
+          });
 
     }
 })

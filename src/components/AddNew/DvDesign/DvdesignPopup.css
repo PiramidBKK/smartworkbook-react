@@ -23,8 +23,8 @@ table {
 
 .back-btn-dvdesign{
     margin: 2.5%;
-    display: flex;
-    justify-content: center;
+    background: none;
+    width: 10%;
     
 }
   
@@ -38,7 +38,7 @@ table {
 
 .back-dvdesign h3{
     color: black;
-
+    text-align: center;
 }
 
 .back-btn-dvdesign :hover{

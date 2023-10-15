@@ -8,6 +8,8 @@ const initialState = {
   configs: [],
   config: {},
   dvdesigns: {},
+  dvlogins:{},
+  swdetails: {},
   loading: false,
   error: null,
   isAdded: false,
@@ -85,7 +87,6 @@ export const fetchconfigsAction = createAsyncThunk(
 export const fetchconfigAction = createAsyncThunk(
   'config/details',
   async(configId, {rejectWithValue, getState, dispatch}) =>{
-    console.log(configId);
     try{
 
       const token = getState()?.users?.userAuth?.userInfo?.data?.token;
@@ -156,6 +157,8 @@ const configSlice = createSlice({
       state.loading = false;
       state.config = action.payload;
       state.dvdesigns[action.payload.config._id] = action.payload.dvdesigns;
+      state.dvlogins[action.payload.config._id] = action.payload.dvlogins;
+      state.swdetails[action.payload.config._id] = action.payload.swdetails;
       state.isAdded = true;
     });
 
