@@ -17,38 +17,36 @@ export default function DvloginPopup(){
 
     const dvloginData = config?.data?.config?.dvlogins;
 
-    return(
-        <div className='dvlogin-popup-main'>
-            <h2>User-Login</h2>
-            <table>
-        <thead>
-          <tr>
-            <th>Devicename</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Ramark</th>
-            {/* Add more table headers as needed */}
-          </tr>
-        </thead>
-        <tbody>
-          {dvloginData?.map((dvlogin) => (
-            <tr key={dvlogin._id}>
-              <td>{dvlogin.devicename}</td>
-              <td>{dvlogin.dvusername}</td>
-              <td>{dvlogin.dvpassword}</td>
-   
-              <td>{dvlogin.remark}</td>
+    return (
+      <div className="dvlogin-popup-main">
+        <h2>User-Login</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Devicename</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Ramark</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {dvloginData?.map((dvlogin) => (
+              <tr key={dvlogin._id}>
+                <td>{dvlogin.devicename}</td>
+                <td>{dvlogin.dvusername}</td>
+                <td>{dvlogin.dvpassword}</td>
 
-            <Link to={`/wbdetail/${id}`}  className="back-btn-dvdesign">
-              <div className="back-dvdesign">
-                <h3>Back</h3>
-              </div>
-      </Link>
+                <td>{dvlogin.remark}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-        </div>
-    )
+        <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
+          <div className="back-dvdesign">
+            <h3>Back</h3>
+          </div>
+        </Link>
+      </div>
+    );
 }

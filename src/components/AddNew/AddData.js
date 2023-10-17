@@ -15,11 +15,13 @@ export default function AddData() {
   //files
   const  [files, setFiles] = useState([]);
   const [fileErrs, setFileErrs] = useState([]);
+  const [fileLabels, setFileLabels] = useState([]);
 
   //const fileChangeHandler
   const  fileHandleChange = (event) =>{
     const newFiles = Array.from(event.target.files);
     const newErrs = [];
+    const newFileLabels = [];
     
     //file validation
     newFiles.forEach(file=>{
@@ -29,11 +31,13 @@ export default function AddData() {
       if (!file?.type?.startsWith("image/")) {
         newErrs.push(`${file?.name} is not an image`);
       }
+      newFileLabels.push(file.name);
     }
   )
 
-    setFiles(newFiles);
+    setFiles((prevFiles) =>[...prevFiles, ...newFiles]);
     setFileErrs(newErrs);
+    setFileLabels((prevLabels)=>[...prevLabels, newFileLabels])
 
   };
 
@@ -93,6 +97,7 @@ export default function AddData() {
         ...formData,
         files,
         filetypes: filetypeOption.label,
+        fileLabels
       })
     );
 

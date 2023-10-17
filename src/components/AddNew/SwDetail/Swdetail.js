@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent';
 import { createSwDetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import Select from "react-select";
+import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
 
 const animetedComponents = makeAnimated();
 
@@ -26,7 +27,8 @@ export default function Swdetail (){
     ipaddress: "", 
     subnetmask: "",
     defaultgateway: "", 
-    remark: "" 
+    remark: "" ,
+    images: []
   })
 
   const {
@@ -39,10 +41,40 @@ export default function Swdetail (){
     ipaddress, 
     subnetmask,
     defaultgateway, 
-    remark 
+    remark ,
+    images
   } = formData
 
   const {swdetail, isAdded,loading, error} = useSelector((state)=> state?.swdetail)
+  const {config} = useSelector((state)=> state?.configs);
+
+
+
+  useEffect(()=>{
+    dispatch(fetchconfigAction(id))
+  },[id])
+
+  //switch image
+  const [selectSwitchImg, setSelectSwitchImg] = useState([])
+
+  const configImg = config?.data?.config?.images;
+  console.log(config);
+
+  const handleImgChange = (selectImg) =>{
+    
+    setSelectSwitchImg(selectImg);
+  }
+
+
+  const imageOptionConverted = config?.data?.config?.images?.map((url)=>{
+    return{
+      value: url,
+      label: url
+    }
+  })
+
+
+
 
     const onChangeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -51,7 +83,7 @@ export default function Swdetail (){
     const onSubmitHandler = (e) =>{
       e.preventDefault();
       dispatch(createSwDetailAction({...formData ,id}));
-      
+      console.log(formData);
     }
 
     return (
@@ -59,8 +91,9 @@ export default function Swdetail (){
         <h1>Switch Details</h1>
 
         <div className="Preview">
-          <button className="preview-btn">Preview</button>
-        </div>
+        <Link to={`/swdetail-popup/${id}`}>
+            <button className="preview-btn">Preview</button>
+          </Link>        </div>
         <form onSubmit={onSubmitHandler}>
           <div className='main-form'>
           <div className="st-form">
@@ -109,8 +142,10 @@ export default function Swdetail (){
               components={animetedComponents}
               name="filetypes"
               className="selectImg"
+              value={selectSwitchImg}
+              onChange={handleImgChange}
+              options={imageOptionConverted}
               isSearchable={true}
-              isLoading={false}
             />
           </div>
 
