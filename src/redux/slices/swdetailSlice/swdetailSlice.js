@@ -16,8 +16,10 @@ const initialState = {
 export const createSwDetailAction = createAsyncThunk(
     'swdetail/addnew',
     async(
-        {hostname,location ,brand ,model ,serialnumber,macaddress ,ipaddress ,subnetmask, defaultgateway,remark ,id}
+        {hostname,location ,brand ,model, modelimg ,serialnumber,macaddress ,ipaddress ,subnetmask, defaultgateway,remark ,id}
         ,{rejectWithValue, getState, dispatch}) =>{
+          console.log(hostname,location ,brand ,model, modelimg );
+
             try{
                 const token = getState()?.users?.userAuth?.userInfo?.data?.token;
                 const tokenConfig = {
@@ -32,6 +34,7 @@ export const createSwDetailAction = createAsyncThunk(
                 formData.append("location",location);
                 formData.append("brand",brand);
                 formData.append("model",model);
+                formData.append("modelimg",modelimg);
                 formData.append("serialnumber",serialnumber);
                 formData.append("macaddress",macaddress);
                 formData.append("ipaddress",ipaddress);
@@ -46,6 +49,7 @@ export const createSwDetailAction = createAsyncThunk(
                 )
 
                 return data;
+
 
 
             }catch(error){

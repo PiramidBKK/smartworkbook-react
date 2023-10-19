@@ -23,7 +23,7 @@ export const createConfigAction = createAsyncThunk(
   async (payload, { rejectWithValue, getState, dispatch }) => {
     console.log(payload);
     try {
-      const { projectname, locationname, filetypes, files } = payload;
+      const { projectname, locationname, filetypes, files, fileLabels } = payload;
 
       //TokenAuthen
       const token = getState()?.users?.userAuth?.userInfo?.data?.token;
@@ -42,6 +42,11 @@ export const createConfigAction = createAsyncThunk(
       files.forEach((file) => {
         formData?.append("files", file);
       });
+
+      for(let i=0; i < fileLabels.length; i++){
+        formData.append(`fileLabels[${i}]`,fileLabels[i])
+
+      }
 
       //make request
       const data = await axios.post(

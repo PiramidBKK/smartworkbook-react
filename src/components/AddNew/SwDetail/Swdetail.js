@@ -28,7 +28,7 @@ export default function Swdetail (){
     subnetmask: "",
     defaultgateway: "", 
     remark: "" ,
-    images: []
+    
   })
 
   const {
@@ -42,7 +42,7 @@ export default function Swdetail (){
     subnetmask,
     defaultgateway, 
     remark ,
-    images
+    
   } = formData
 
   const {swdetail, isAdded,loading, error} = useSelector((state)=> state?.swdetail)
@@ -57,33 +57,49 @@ export default function Swdetail (){
   //switch image
   const [selectSwitchImg, setSelectSwitchImg] = useState([])
 
-  const configImg = config?.data?.config?.images;
-  console.log(config);
 
   const handleImgChange = (selectImg) =>{
     
     setSelectSwitchImg(selectImg);
+
+
+    setFormData((prevFormData) =>({
+      ...prevFormData,
+    }))
+
+
   }
 
+  const imgLabel = config?.data?.config?.fileLabels.map((name)=>name)
 
-  const imageOptionConverted = config?.data?.config?.images?.map((url)=>{
-    return{
+
+  const imageOptionConverted = config?.data?.config?.images.map((url, index) => {
+    return {
       value: url,
-      label: url
-    }
-  })
+      label: imgLabel[index] || url, 
+    };
+    // const modelimg = imageOptionConverted[index].value;
 
+  });
 
+  let imageIndex = 0;
 
 
     const onChangeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
+
     const onSubmitHandler = (e) =>{
       e.preventDefault();
-      dispatch(createSwDetailAction({...formData ,id}));
-      console.log(formData);
+
+      const modelimg = imageOptionConverted[imageIndex].value;
+
+
+      dispatch(createSwDetailAction({
+        ...formData,
+        modelimg
+        ,id}));
     }
 
     return (

@@ -37,7 +37,7 @@ export default function AddData() {
 
     setFiles((prevFiles) =>[...prevFiles, ...newFiles]);
     setFileErrs(newErrs);
-    setFileLabels((prevLabels)=>[...prevLabels, newFileLabels])
+    setFileLabels((prevLabels)=>[...prevLabels, ...newFileLabels])
 
   };
 
@@ -103,12 +103,7 @@ export default function AddData() {
 
     setSubmitButtonClicked(true);
 
-    //setFormData
-    const setFormData = {
-      projectname: "",
-      locationname: "",
-      filetypes: "",
-    };
+
   };
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
