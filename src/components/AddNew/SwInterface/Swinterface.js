@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
+import { createSwDetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
+import { createSwinterfaceAction } from '../../../redux/slices/swinterfaceSlice/swinterfaceSlice';
 
 
 export default function SwitchInterface (){
@@ -12,7 +14,6 @@ export default function SwitchInterface (){
   const dispatch = useDispatch();
 
   const {id, switchId } = useParams();
-
 
     const [formData, setFormData] = useState({
         connectto : "",
@@ -32,10 +33,11 @@ export default function SwitchInterface (){
         remark
     } = formData
 
-    const {config, error, loading} = useSelector((state)=>
+    const {config} = useSelector((state)=>
         state?.configs
     );
 
+    const {swinterface, error, loading, isAdd} = useSelector((state)=> state?.swinterface)
 
     useEffect(()=>{
       dispatch(fetchconfigAction(id));
@@ -53,7 +55,7 @@ export default function SwitchInterface (){
 
   const onSubmitHandler = (e) =>{
     e.preventDefault();
-    console.log(id);
+    dispatch(createSwinterfaceAction({...formData, id, switchId}))
 
   }
 
@@ -133,21 +135,19 @@ export default function SwitchInterface (){
               </div>
   
             </div>
-  
-            
-  
+
             <div className="dvdesign-button">
               <Link to={`/wbdetail/${id}`} className="back-btn">
                 <div className="back">
                   <h3>Back</h3>
                 </div>
               </Link>
-  
+
               {loading ? (
               <LoadingComponent />
             ) : (
-              <button className="next-btn" type="submit">
-                <div className="next">
+              <button className="next-btn-swdetail" type="submit">
+                <div className="next-swdetail">
                   <h3>Next</h3>
                 </div>
               </button>

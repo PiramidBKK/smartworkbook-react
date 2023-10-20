@@ -95,6 +95,7 @@
     
 .WBDetail-Data {
         height: 17vh;
+        overflow: auto;
     }
 }
 

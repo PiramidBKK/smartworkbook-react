@@ -10,6 +10,7 @@ const initialState = {
   dvdesigns: {},
   dvlogins:{},
   swdetails: {},
+  swinterfaces: {},
   loading: false,
   error: null,
   isAdded: false,
@@ -164,6 +165,7 @@ const configSlice = createSlice({
       state.dvdesigns[action.payload.config._id] = action.payload.dvdesigns;
       state.dvlogins[action.payload.config._id] = action.payload.dvlogins;
       state.swdetails[action.payload.config._id] = action.payload.swdetails;
+      state.swinterfaces[action.payload.config._id] = action.payload.swinterfaces;
       state.isAdded = true;
     });
 

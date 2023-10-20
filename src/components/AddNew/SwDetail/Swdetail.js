@@ -92,10 +92,7 @@ export default function Swdetail (){
 
     const onSubmitHandler = (e) =>{
       e.preventDefault();
-
       const modelimg = imageOptionConverted[imageIndex].value;
-
-
       dispatch(createSwDetailAction({
         ...formData,
         modelimg

@@ -18,7 +18,6 @@ export const createSwDetailAction = createAsyncThunk(
     async(
         {hostname,location ,brand ,model, modelimg ,serialnumber,macaddress ,ipaddress ,subnetmask, defaultgateway,remark ,id}
         ,{rejectWithValue, getState, dispatch}) =>{
-          console.log(hostname,location ,brand ,model, modelimg );
 
             try{
                 const token = getState()?.users?.userAuth?.userInfo?.data?.token;
