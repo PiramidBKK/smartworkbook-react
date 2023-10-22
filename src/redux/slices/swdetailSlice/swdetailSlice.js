@@ -6,6 +6,7 @@ import { resetErrAction, resetSuccessAction } from "../users/globalActions/globa
 const initialState = {
     swdetails: [],
     swdetail : {},
+    swinterfaces :{},
     loading : false,
     error: null,
     isAdded: false,
@@ -57,6 +58,34 @@ export const createSwDetailAction = createAsyncThunk(
             }
         }
 );
+
+export const fetchSwDetailAction = createAsyncThunk(
+    'swdetail/details',
+    async(
+        swdetailId 
+        ,{rejectWithValue, getState, dispatch}
+    ) =>{
+        try{
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+            const data = await axios.get(
+                `${baseURL}/swdetail/${swdetailId}`,
+                tokenConfig
+            )
+
+            return data;
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);  
+        }
+    }
+)
 
 export const fetchSwDetailsAction = createAsyncThunk(
     'swdetail/list',
@@ -121,6 +150,25 @@ const swdetailsSlice = createSlice({
           });
   
           builder.addCase(fetchSwDetailsAction.rejected, (state, action) => {
+            state.loading = false;
+            state.swdetails = null;
+            state.isAdded = false;
+            state.error = action.payload;
+          });
+
+        //fetch swdetail
+        builder.addCase(fetchSwDetailAction.pending, (state) => {
+            state.loading = true;
+          });
+  
+          builder.addCase(fetchSwDetailAction.fulfilled, (state, action) => {
+            state.loading = false;
+            state.swdetails = action.payload;
+            state.swinterfaces = [action.payload.swdetail._id] = action.payload.swinterfaces;
+            state.isAdded = true;
+          });
+  
+          builder.addCase(fetchSwDetailAction.rejected, (state, action) => {
             state.loading = false;
             state.swdetails = null;
             state.isAdded = false;

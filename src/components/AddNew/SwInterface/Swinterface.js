@@ -64,7 +64,9 @@ export default function SwitchInterface (){
         <div className="AddSwInterface">
         <h1>Switch Interface : {switchName ? switchName.hostname : null}</h1>
         <div className="Preview">
-          <button className="preview-btn">Preview</button>
+          <Link to={`/swinterface-popup/${id}/${switchId}`}>
+            <button className="preview-btn">Preview</button>
+          </Link>{" "}
         </div>
         <form onSubmit={onSubmitHandler}>
           <div className='main-form'>

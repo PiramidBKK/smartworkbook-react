@@ -16,6 +16,7 @@ import Modal from './utils/reactPlayGround';
 import DvdesignPopup from './components/AddNew/DvDesign/DvdesignPopup';
 import DvloginPopup from './components/AddNew/DvLogin/DvloginPopup';
 import SwdetailPopup from './components/AddNew/SwDetail/SwdetailPopup';
+import SwinterfacePopup from './components/AddNew/SwInterface/SwitchInterface';
 
 
 function App() {
@@ -107,6 +108,15 @@ function App() {
             element={
               <AuthRoute>
                 <SwdetailPopup />
+              </AuthRoute>
+            }
+          />
+
+          <Route
+            path="swinterface-popup/:id/:switchId"
+            element={
+              <AuthRoute>
+                <SwinterfacePopup />
               </AuthRoute>
             }
           />

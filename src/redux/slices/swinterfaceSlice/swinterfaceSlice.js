@@ -50,7 +50,7 @@ export const createSwinterfaceAction = createAsyncThunk(
     }
 )
 
-const fetchSwInterfacesAction = createAsyncThunk(
+export const fetchSwInterfacesAction = createAsyncThunk(
     "swinterface/list",
     async({connectto,description,vlanid,mode,label,remark, id, switchId},{rejectWithValue, getState, dispatch}) =>{
         try{
@@ -109,14 +109,14 @@ const swinterfaceSlice = createSlice({
 
     builder.addCase(fetchSwInterfacesAction.fulfilled, (state, action)=>{
         state.loading = false;
-        state.swinterface = action.payload;
+        state.swinterfaces = action.payload;
         state.isAdded = true;
 
     })
 
     builder.addCase(fetchSwInterfacesAction.rejected, (state, action)=>{
         state.loading = false;
-        state.swinterface = null;
+        state.swinterfaces = null;
         state.isAdded = false;
         state.error = action.payload;
 
