@@ -79,45 +79,35 @@ function App() {
           <Route
             path="wbdetail/:id"
             element={
-              <AuthRoute>
                 <WBDetail />
-              </AuthRoute>
             }
           />
 
           <Route
             path="dvdesign-popup/:id"
             element={
-              <AuthRoute>
                 <DvdesignPopup />
-              </AuthRoute>
             }
           />
 
           <Route
             path="dvlogin-popup/:id"
             element={
-              <AuthRoute>
                 <DvloginPopup />
-              </AuthRoute>
             }
           />
 
           <Route
             path="swdetail-popup/:id"
             element={
-              <AuthRoute>
                 <SwdetailPopup />
-              </AuthRoute>
             }
           />
 
           <Route
             path="swinterface-popup/:id/:switchId"
             element={
-              <AuthRoute>
                 <SwinterfacePopup />
-              </AuthRoute>
             }
           />
 
