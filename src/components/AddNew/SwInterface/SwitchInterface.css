@@ -19,3 +19,48 @@
     width: 884px;
     height: 256px;
 }
+
+.switchdetail-data{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.sub-thead{
+    padding: 20px;
+}
+
+.Configuration-detail table{
+    width: 150%;
+    margin-left: -50%;
+}
+
+.Hardware-detail table{
+    width: 150%;
+}
+
+.Configuration-detail table thead{
+    border: 1px solid;
+    text-align: center;
+}
+
+.Hardware-detail table thead{
+    border: 1px solid;
+    text-align: center;
+    padding: 2px;
+}
+
+
+.Configuration-detail table tbody td{ 
+    padding: 2px;
+    font-size: 14px;
+
+}
+
+.Hardware-detail table tbody td{
+    padding: 2px;
+    font-size: 14px;
+
+}
+
+
