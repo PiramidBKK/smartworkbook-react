@@ -76,14 +76,15 @@ export default function Swdetail (){
   const imageOptionConverted = config?.data?.config?.images.map((url, index) => {
     return {
       value: url,
-      label: imgLabel[index] || url, 
+      label: imgLabel[index], 
+      
     };
-    // const modelimg = imageOptionConverted[index].value;
-
   });
 
-  let imageIndex = 0;
+  // const [imageIndex, setImageIndex] = useState(0);
 
+
+  const selectedLabel = selectSwitchImg.label;
 
     const onChangeHandler = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -92,11 +93,15 @@ export default function Swdetail (){
 
     const onSubmitHandler = (e) =>{
       e.preventDefault();
-      const modelimg = imageOptionConverted[imageIndex].value;
+      const modelimg = imageOptionConverted.find(option => option.label === selectedLabel)?.value;
       dispatch(createSwDetailAction({
         ...formData,
         modelimg
-        ,id}));
+        ,id
+      }
+      ));
+      console.log(modelimg);
+
     }
 
     return (

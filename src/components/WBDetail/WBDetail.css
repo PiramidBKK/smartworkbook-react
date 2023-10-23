@@ -88,6 +88,8 @@
     margin-top: 1%;
     padding: 0.5% 0 0 0;
     height: 45vh;
+    overflow-y: scroll;
+    overflow-y: overlay;
 
 }
 

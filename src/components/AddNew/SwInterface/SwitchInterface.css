@@ -1,0 +1,21 @@
+.swinterface-popup-main{
+    padding: 20px;
+
+}
+
+.swinterface-popup-main h2{
+    padding: 10px;
+    text-align: center;
+
+}
+
+.image-of-switch{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.switch-image{
+    width: 884px;
+    height: 256px;
+}

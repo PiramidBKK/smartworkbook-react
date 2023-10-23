@@ -22,7 +22,9 @@ export default function SwinterfacePopup(){
 
     const swdetailName = swdetailData?.find((swdetail)=> swdetail._id === switchId)
     const swinterfaceData = swdetailName ? swdetailName.swinterfaces : [];
-    
+
+    //switch images
+    const switchImage = swdetailName?.modelimg;
 
 
 
@@ -30,7 +32,7 @@ export default function SwinterfacePopup(){
       <div className="swinterface-popup-main">
         <h2>Switch Interface : {swdetailName ? swdetailName.hostname : null}</h2>
         <div className='image-of-switch'>
-
+          {swdetailName ? <img src={swdetailName.modelimg } alt='Switch Image' className='switch-image'></img>: null}
         </div>
         <div className="switchdetail-data">
           <div className="Hardware-detail">
