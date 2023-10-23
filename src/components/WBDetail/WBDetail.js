@@ -47,22 +47,26 @@ export default function WBDetail() {
       };
     });
   
-    
-  
-
-
     //fetchData
     const configData = config?.data?.config
     const dvdesignData = config?.data?.config?.dvdesigns;
     const dvloginData = config?.data?.config?.dvlogins;
     const swdetailData = config?.data?.config?.swdetails;
+    const swinterfaceData = config?.data?.config?.swinterfaces;
+    console.log(swdetailData);
 
-    // console.log(swdetailData);
+    //map switch details
+    const switchDetailName = swdetailData ? swdetailData.map((swdetail)=> `Switch : ${swdetail.hostname}`):[]
+    
+    //get id from switch detail
+    const switchDetailId = swdetailData ? swdetailData.map((swdetail) => swdetail._id):[]
+    console.log(switchDetailId);
 
     //check all data
     const hasDvdesign = dvdesignData && dvdesignData.length >= 1;
     const hasDvlogin = dvloginData && dvloginData.length >= 1;
     const hasSwdetail = swdetailData && swdetailData.length >= 1;
+    const hasSwinterface = swinterfaceData && swinterfaceData.length >= 1;
 
 
 
@@ -138,7 +142,20 @@ export default function WBDetail() {
               <div className="vlan-line" />
             </Link>
           ) : null}
+          {loading ? (
+            <LoadingComponent />
+          ) : hasSwinterface ? (
+            switchDetailName.map((switchDetailName, index) =>(
+              <Link to={`/swinterface-popup/${id}/${switchDetailId[index]}`}>
+              <div className="dvdesing-wbdetail">{switchDetailName}</div>
+              <div className="vlan-line" />
+            </Link>
+            ))
+          ) : null}
         </div>
       </div>
     );}
+
+    //http://localhost:3000/swinterface-popup/652fcb352cc7668798ee911d/653142995b223ded5a7b08f1
+    //http://localhost:3000/swinterface-popup/652fcb352cc7668798ee911d/653142995b223ded5a7b08f1,6533c4a25b223ded5a7b0ffa
 

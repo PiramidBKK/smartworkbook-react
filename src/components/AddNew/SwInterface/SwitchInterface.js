@@ -16,15 +16,14 @@ export default function SwinterfacePopup(){
         dispatch(fetchSwInterfacesAction(switchId))
     },[id, switchId])
 
-    const {config} = useSelector((state)=> state?.configs)
+    const {config, error, loading} = useSelector((state)=> state?.configs)
     
     const swdetailData = config?.data?.config?.swdetails;
 
     const swdetailName = swdetailData?.find((swdetail)=> swdetail._id === switchId)
-    const swinterfaceData = swdetailName.swinterfaces;
+    const swinterfaceData = swdetailName ? swdetailName.swinterfaces : [];
     
 
-    console.log(swdetailName.swinterfaces);
 
 
     return (
@@ -72,12 +71,20 @@ export default function SwinterfacePopup(){
           </tbody>
         </table>
     
-
+        <div className='popup-dvdesign-button'>
         <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
           <div className="back-dvdesign">
             <h3>Back</h3>
           </div>
         </Link>
+
+        <Link to={`/swinterface/${id}/${switchId}`} className="ok-btn-dvdesign">
+          <div className="ok-dvdesign">
+            <h3>OK</h3>
+          </div>
+        </Link>
+        </div>
+
       </div>
     );
 

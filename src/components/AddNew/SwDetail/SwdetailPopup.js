@@ -51,11 +51,21 @@ export default function SwdetailPopup(){
           </tbody>
         </table>
 
+        <div className='popup-dvdesign-button'>
+
         <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
           <div className="back-dvdesign">
             <h3>Back</h3>
           </div>
         </Link>
+
+        <Link to={`/swdetail/${id}`} className="ok-btn-dvdesign">
+          <div className="ok-dvdesign">
+            <h3>OK</h3>
+          </div>
+        </Link>
+        </div>
+
       </div>
     );
 }
