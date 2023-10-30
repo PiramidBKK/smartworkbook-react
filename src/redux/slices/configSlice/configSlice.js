@@ -153,6 +153,24 @@ const configSlice = createSlice({
       
     });
 
+    //update
+    builder.addCase(updateconfigAction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateconfigAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.config = action.payload;
+      state.isUpdated = true;
+    });
+
+    builder.addCase(updateconfigAction.rejected, (state, action) => {
+      state.loading = false;
+      state.config = null;
+      state.isUpdated = false;
+      state.error = action.payload;
+      
+    });
+
     //fetch all
     builder.addCase(fetchconfigsAction.pending, (state) => {
       state.loading = true;

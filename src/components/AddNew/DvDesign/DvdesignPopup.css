@@ -1,6 +1,7 @@
 .dvdesign-popup-main{
     padding: 20px;
     height: 85vh;
+    overflow: auto;
 }
 
 .dvdesign-popup-main h2{
