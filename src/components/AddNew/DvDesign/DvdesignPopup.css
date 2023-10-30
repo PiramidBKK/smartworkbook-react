@@ -1,5 +1,6 @@
 .dvdesign-popup-main{
     padding: 20px;
+    height: 85vh;
 }
 
 .dvdesign-popup-main h2{
@@ -29,15 +30,13 @@ table {
 .back-btn-dvdesign{
     margin: 2.5%;
     background: none;
-    width: 10%;
-    
 }
   
 .back-dvdesign {
     background: #676767;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding: 15px;
+    padding: 15px 50px;
 
 
 }
@@ -60,14 +59,13 @@ table {
 .ok-btn-dvdesign{
     margin: 2.5%;
     background: none;
-    width: 10%;
     
 }
 
 .ok-dvdesign {
     background: #cf2d2d;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-    padding: 15px;
+    padding: 15px 50px;
     border-radius: 10px;
 
 }

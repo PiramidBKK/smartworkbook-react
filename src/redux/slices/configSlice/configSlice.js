@@ -114,6 +114,22 @@ export const fetchconfigAction = createAsyncThunk(
   }
 );
 
+export const updateconfigAction = createAsyncThunk(
+  'config/update',
+  async(payload, {rejectWithValue, getState, dispatch}) =>{
+    try{
+      const { projectname, locationname, filetypes, fileLabels, id } = payload;
+
+      await axios.put(
+        `${baseURL}/config/update/:id`
+      )
+
+    }catch(error){
+
+    }
+  }
+)
+
 //create config slice
 const configSlice = createSlice({
   name: "configs",

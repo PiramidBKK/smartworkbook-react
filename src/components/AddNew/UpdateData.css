@@ -1,0 +1,149 @@
+.UpdateDataPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5%;
+}
+
+.UpdateDataPage h1{
+    text-align: center;
+
+}
+
+.UpdateDataPage form{
+    box-sizing: border-box;
+    width: 450px;
+    padding-top: 4%;
+}
+
+
+.displayError-add-data{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    background: #ffcfcf;
+    margin: -10px 5px 5px 5px;
+    width: 500px;
+}
+
+
+form .UpdateProjectname{
+    padding-bottom: 15px;
+    position: relative;
+    padding-top: 20px;
+}
+
+
+form .Update-Projectname{
+    padding-bottom: 15px;
+    position: relative;
+    padding-top: 20px;
+}
+
+.Update-Projectname{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Update-Projectname label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.Update-Location{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Update-Location label{
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.Update-Projectname input{
+    border: none;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+
+}
+
+.Update-Location input{
+    border: none;
+    margin-bottom: 15px;
+    height: 45px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+    padding-left: 10px;
+    font-size: 18px;
+
+}
+
+
+
+.finishUpdate{
+    padding-top: 5%;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    padding: 20px 0 ;
+}
+
+.update-next-btn{
+    background: #E61818;
+    border: none;
+    border-radius: 10px;
+    height: 7vh;
+    width: 45%;
+
+}
+
+.update-next-btn:hover{
+    background: #af1313;
+
+
+}
+
+
+.update-next h3{
+    text-align: center;
+    color: black;
+}
+
+.update-back-btn{
+    background: #676767;
+    border-radius: 10px;
+    height: 7vh;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.update-back-btn:hover{
+    background: #676767;
+    background: #525252;
+
+}
+
+.update-back{
+    text-align: center;
+    color: black;
+
+}
+
+.update-back h2{
+    text-align: center;
+}

@@ -8,6 +8,8 @@ import { fetchDvdesignsAction } from '../../redux/slices/dvdesignSlice/dvdesignS
 import { fetchDvloginsAction } from '../../redux/slices/dvloginSlice/dvloginSlice';
 import { fetchSwDetailsAction } from '../../redux/slices/swdetailSlice/swdetailSlice';
 import Select from 'react-select';
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import UpdateData from '../AddNew/UpdateData';
 
 
 export default function WBDetail() {
@@ -18,9 +20,9 @@ export default function WBDetail() {
 
     useEffect(()=>{
         dispatch(fetchconfigAction(id));
-        dispatch(fetchDvdesignsAction(id));
-        dispatch(fetchDvloginsAction(id))
-        dispatch(fetchSwDetailsAction(id))
+        // dispatch(fetchDvdesignsAction(id));
+        // dispatch(fetchDvloginsAction(id))
+        // dispatch(fetchSwDetailsAction(id))
     },[id]);
 
 
@@ -35,7 +37,6 @@ export default function WBDetail() {
     const switchNames = config?.data?.config?.swdetails;
 
     const handleSwitchChange = (selectedHostname) => {
-      console.log(selectedHostname);
       setSelectSwitch(selectedHostname);
     };
   
@@ -53,14 +54,12 @@ export default function WBDetail() {
     const dvloginData = config?.data?.config?.dvlogins;
     const swdetailData = config?.data?.config?.swdetails;
     const swinterfaceData = config?.data?.config?.swinterfaces;
-    console.log(swdetailData);
 
     //map switch details
     const switchDetailName = swdetailData ? swdetailData.map((swdetail)=> `Switch : ${swdetail.hostname}`):[]
     
     //get id from switch detail
     const switchDetailId = swdetailData ? swdetailData.map((swdetail) => swdetail._id):[]
-    console.log(switchDetailId);
 
     //check all data
     const hasDvdesign = dvdesignData && dvdesignData.length >= 1;
@@ -109,9 +108,15 @@ export default function WBDetail() {
             </label>
           </Link>
         </div>
+
+        {/* Display page */}
+
         <div className="workbook">
           <div className="Projectname">
             <h1>{configData?.projectname}</h1>
+            <Link to={`/update-data/${id}`} className='link-to-update-data'>
+              <PencilSquareIcon className="edit-projectname-icon" />
+            </Link>
           </div>
 
           <div className="projectline" />
@@ -120,42 +125,39 @@ export default function WBDetail() {
         <div className="WBDetail-Data">
           {loading ? (
             <LoadingComponent />
-          ) : hasDvdesign ? (
-            <Link to={`/dvdesign-popup/${id}`}>
-              <div className="dvdesing-wbdetail">Vlan Design</div>
-              <div className="vlan-line" />
-            </Link>
-          ) : null}
-          {loading ? (
-            <LoadingComponent />
-          ) : hasDvlogin ? (
-            <Link to={`/dvlogin-popup/${id}`}>
-              <div className="dvdesing-wbdetail">User Login</div>
-              <div className="vlan-line" />
-            </Link>
-          ) : null}
-          {loading ? (
-            <LoadingComponent />
-          ) : hasSwdetail ? (
-            <Link to={`/swdetail-popup/${id}`}>
-              <div className="dvdesing-wbdetail">Switch Detail</div>
-              <div className="vlan-line" />
-            </Link>
-          ) : null}
-          {loading ? (
-            <LoadingComponent />
-          ) : hasSwinterface ? (
-            switchDetailName.map((switchDetailName, index) =>(
-              <Link to={`/swinterface-popup/${id}/${switchDetailId[index]}`}>
-              <div className="dvdesing-wbdetail">{switchDetailName}</div>
-              <div className="vlan-line" />
-            </Link>
-            ))
-          ) : null}
+          ) : (
+            <>
+              {hasDvdesign && (
+                <Link to={`/dvdesign-popup/${id}`}>
+                  <div className="dvdesing-wbdetail">Vlan Design</div>
+                  <div className="vlan-line" />
+                </Link>
+              )}
+              {hasDvlogin && (
+                <Link to={`/dvlogin-popup/${id}`}>
+                  <div className="dvdesing-wbdetail">User Login</div>
+                  <div className="vlan-line" />
+                </Link>
+              )}
+              {hasSwdetail && (
+                <Link to={`/swdetail-popup/${id}`}>
+                  <div className="dvdesing-wbdetail">Switch Detail</div>
+                  <div className="vlan-line" />
+                </Link>
+              )}
+              {hasSwinterface &&
+                switchDetailName.map((switchDetailName, index) => (
+                  <Link
+                    to={`/swinterface-popup/${id}/${switchDetailId[index]}`}
+                  >
+                    <div className="dvdesing-wbdetail">{switchDetailName}</div>
+                    <div className="vlan-line" />
+                  </Link>
+                ))}
+            </>
+          )}
         </div>
       </div>
     );}
 
-    //http://localhost:3000/swinterface-popup/652fcb352cc7668798ee911d/653142995b223ded5a7b08f1
-    //http://localhost:3000/swinterface-popup/652fcb352cc7668798ee911d/653142995b223ded5a7b08f1,6533c4a25b223ded5a7b0ffa
 

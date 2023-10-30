@@ -1,5 +1,7 @@
 .dvlogin-popup-main{
     padding: 20px;
+    height: 85vh;
+    overflow-y: auto;
 }
 
 .dvlogin-popup-main h2{

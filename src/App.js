@@ -12,11 +12,11 @@ import DvDesign from './components/AddNew/DvDesign/DvDesign';
 import DvLogin from './components/AddNew/DvLogin/Dvlogin';
 import Swdetail from './components/AddNew/SwDetail/Swdetail';
 import SwitchInterface from './components/AddNew/SwInterface/Swinterface';
-import Modal from './utils/reactPlayGround';
 import DvdesignPopup from './components/AddNew/DvDesign/DvdesignPopup';
 import DvloginPopup from './components/AddNew/DvLogin/DvloginPopup';
 import SwdetailPopup from './components/AddNew/SwDetail/SwdetailPopup';
 import SwinterfacePopup from './components/AddNew/SwInterface/SwitchInterface';
+import UpdateData from './components/AddNew/UpdateData';
 
 
 function App() {
@@ -37,6 +37,14 @@ function App() {
             element={
               <AuthRoute>
                 <AddData />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="update-data/:id"
+            element={
+              <AuthRoute>
+                <UpdateData />
               </AuthRoute>
             }
           />

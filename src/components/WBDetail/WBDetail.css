@@ -63,6 +63,7 @@
 .Projectname{
     display: flex;
     justify-content: center;
+    align-items: center;
 
 }
 
@@ -113,5 +114,18 @@
     left: 2.5%;
     width: 95%;
     border: solid 1px black;
+}
+
+.edit-projectname-icon{
+    width: 70%;
+    color: rgb(59, 101, 165);
+
+}
+
+.link-to-update-data{
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    width: 12%;
 }
 

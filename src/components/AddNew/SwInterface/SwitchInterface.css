@@ -1,6 +1,7 @@
 .swinterface-popup-main{
     padding: 20px;
-
+    height: 85vh;
+    overflow-y: auto;
 }
 
 .swinterface-popup-main h2{
