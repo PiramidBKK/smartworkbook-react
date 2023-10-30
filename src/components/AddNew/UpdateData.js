@@ -5,14 +5,25 @@ import Select from "react-select";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComponent from "../LoadingComp/LoadingComponent";
-import { createConfigAction } from "../../redux/slices/configSlice/configSlice";
+import { createConfigAction, fetchconfigAction, updateconfigAction } from "../../redux/slices/configSlice/configSlice";
 import { useEffect } from "react";
 
 const animetedComponents = makeAnimated();
 
 export default function UpdateData() {
-
+  //get id from params
     const { id } = useParams();
+    const dispatch = useDispatch();
+
+
+    //fetch workbook
+    useEffect(()=>{
+      dispatch(fetchconfigAction(id))
+    },[id, dispatch]
+    )
+
+
+
   //filetypes
   const filetypes = [
     "Network System",
@@ -43,11 +54,11 @@ export default function UpdateData() {
     };
   });
 
-  const dispatch = useDispatch();
+  const { config, isUpdated, loading, error } = useSelector((state) => state?.configs);
 
   const [formData, setFormData] = useState({
-    projectname: "",
-    locationname: "",
+    projectname: config?.data?.config?.projectname,
+    locationname: config?.data?.config?.locationname,
     filetypes: "",
 
   });
@@ -59,13 +70,12 @@ export default function UpdateData() {
   };
 
   //get data from store
-  const { config, isAdded, loading, error } = useSelector((state) => state?.configs);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
     dispatch(
-      createConfigAction({
+      updateconfigAction({
         ...formData,
         filetypes: filetypeOption.label,
         id
@@ -73,6 +83,12 @@ export default function UpdateData() {
     );
 
     setSubmitButtonClicked(true);
+
+    setFormData({
+      projectname: '',
+      locationname:'',
+      filetypes: '',
+    })
 
   };
 

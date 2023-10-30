@@ -114,18 +114,31 @@ export const fetchconfigAction = createAsyncThunk(
   }
 );
 
+//update config
 export const updateconfigAction = createAsyncThunk(
   'config/update',
   async(payload, {rejectWithValue, getState, dispatch}) =>{
     try{
-      const { projectname, locationname, filetypes, fileLabels, id } = payload;
+      const { projectname, locationname, filetypes, id } = payload;
+
+      const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+      const tokenConfig = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
       await axios.put(
-        `${baseURL}/config/update/:id`
+        `${baseURL}/config/${id}`,
+        {
+          projectname, locationname, filetypes
+        },
+        tokenConfig
       )
 
     }catch(error){
-
+      console.log(error);
+      return rejectWithValue(error?.response?.data)
     }
   }
 )

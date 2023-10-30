@@ -1,10 +1,18 @@
 .wbdetail-body{
     height: 75vh;
-    overflow-y: scroll;
-    overflow-y: overlay;
+
 
 }
 
+@media screen and (max-width: 600px) {
+    .wbdetail-body{
+        height: 75vh;
+        overflow-y: auto;
+    
+    }
+
+
+}
 
 
 .select{
@@ -13,7 +21,6 @@
     justify-content: space-around;
 
     padding-bottom: 50px;
-    width: 100%;
 
 }
 
