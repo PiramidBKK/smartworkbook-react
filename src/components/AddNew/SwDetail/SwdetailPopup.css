@@ -4,6 +4,16 @@
     overflow-y: auto;
 }
 
+@media screen and (max-width: 600px) {
+    .swdetail-popup-main{
+        padding: 20px;
+        height: 60vh;
+        overflow-y: auto;
+    }
+
+
+}
+
 
 .swdetail-popup-main h2{
     padding: 10px;

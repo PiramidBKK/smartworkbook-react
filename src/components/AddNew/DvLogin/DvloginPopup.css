@@ -4,6 +4,16 @@
     overflow-y: auto;
 }
 
+@media screen and (max-width: 600px) {
+    .dvlogin-popup-main{
+        padding: 20px;
+        height: 60vh;
+        overflow-y: auto;
+    }
+
+
+}
+
 .dvlogin-popup-main h2{
     padding: 10px;
     text-align: center;
