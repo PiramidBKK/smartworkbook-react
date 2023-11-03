@@ -3,6 +3,7 @@ import './DvdesignPopup.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
+import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
 
 
 
@@ -19,9 +20,11 @@ export default function DvdesignPopup(){
   const {config, error, loading} = useSelector((state)=> state?.configs)
 
   const dvdesignData = config?.data?.config?.dvdesigns;
-  const configData = config?.data?.config
-  
 
+  const dvdesignId = dvdesignData?.map((dvdesign) =>
+    dvdesign._id
+  )
+  
 
 
       return(
@@ -36,6 +39,9 @@ export default function DvdesignPopup(){
             <th>Gateway</th>
             <th>Hostrange</th>
             <th>Ramark</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
             {/* Add more table headers as needed */}
           </tr>
         </thead>
@@ -48,6 +54,8 @@ export default function DvdesignPopup(){
               <td>{dvdesign.gateway}</td>
               <td>{dvdesign.hostrange}</td>
               <td>{dvdesign.remark}</td>
+              <td><Link to={`/edit-dvdesign/${dvdesign._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
+              <td><TrashIcon className='delete-trash'/></td>
             </tr>
           ))}
         </tbody>

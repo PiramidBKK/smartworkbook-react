@@ -15,7 +15,7 @@ const initialState ={
 
 };
 
-
+//create dvlogin
 export const createDvloginAction = createAsyncThunk(
     'dvlogin/addnew',
     async({devicename,dvusername,dvpassword,remark, id}, {rejectWithValue, getState, dispatch}) =>{
@@ -38,6 +38,36 @@ export const createDvloginAction = createAsyncThunk(
             const data = await axios.post(
                 `${baseURL}/dvlogin/addnew/${id}`,
                 formData,
+                tokenConfig
+            );
+
+            return data;
+
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);
+        }
+    }
+);
+
+//update dvlogin
+export const updateDvloginAction = createAsyncThunk(
+    'dvlogin/update',
+    async({devicename,dvusername,dvpassword,remark, id}, {rejectWithValue, getState, dispatch}) =>{
+        try{
+
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+
+            const data = await axios.put(
+                `${baseURL}/dvlogin/${id}`,
+                {devicename,dvusername,dvpassword,remark},
                 tokenConfig
             );
 
@@ -80,21 +110,24 @@ export const fetchDvloginsAction = createAsyncThunk(
 )
 
 //fetch single dvlogin
-export const fetchSingleDvdesignsAction = createAsyncThunk(
+export const fetchDvloginAction = createAsyncThunk(
     'dvlogin/details',
-    async(dvloginId, {rejectWithValue, getState, dispatch}) =>{
+    async(id, {rejectWithValue, getState, dispatch}) =>{
+        console.log(id);
         try{
 
-            const token = getState()?.user?.useAuth?.userInfo?.data?.token
+
+          const token = getState()?.users?.userAuth?.userInfo?.data?.token;
             const tokenConfig = {
-                headers:{
-                    Authorization: `Bearer ${token}`
-                }
-            }
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
 
             //make request
             const data = await axios.get(
-                `${baseURL}/dvlogin/${dvloginId}`,
+                `${baseURL}/dvlogin/${id}`,
                 tokenConfig
 
             );
@@ -130,7 +163,25 @@ const dvloginsSlice = createSlice({
           state.error = action.payload;
         });
 
-        //fetch dvlogin
+        //update login
+        builder.addCase(updateDvloginAction.pending, (state) => {
+          state.loading = true;
+        });
+
+        builder.addCase(updateDvloginAction.fulfilled, (state, action) => {
+          state.loading = false;
+          state.dvlogin = action.payload;
+          state.isUpdated = true;
+        });
+
+        builder.addCase(updateDvloginAction.rejected, (state, action) => {
+          state.loading = false;
+          state.dvlogin = null;
+          state.isUpdated = false;
+          state.error = action.payload;
+        });
+
+        //fetch dvlogins
         builder.addCase(fetchDvloginsAction.pending, (state) =>{
             state.loading = true;
         });
@@ -144,6 +195,25 @@ const dvloginsSlice = createSlice({
         builder.addCase(fetchDvloginsAction.rejected, (state, action) =>{
             state.loading = false;
             state.dvlogins = null
+            state.isAdded = false;
+            state.error = action.payload;
+
+        });
+
+        //fetch dvlogin
+        builder.addCase(fetchDvloginAction.pending, (state) =>{
+            state.loading = true;
+        });
+
+        builder.addCase(fetchDvloginAction.fulfilled, (state, action) =>{
+            state.loading = false;
+            state.dvlogin = action.payload;
+            state.isAdded = true;
+        });
+
+        builder.addCase(fetchDvloginAction.rejected, (state, action) =>{
+            state.loading = false;
+            state.dvlogin = null
             state.isAdded = false;
             state.error = action.payload;
 

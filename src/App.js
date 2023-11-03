@@ -17,6 +17,8 @@ import DvloginPopup from './components/AddNew/DvLogin/DvloginPopup';
 import SwdetailPopup from './components/AddNew/SwDetail/SwdetailPopup';
 import SwinterfacePopup from './components/AddNew/SwInterface/SwitchInterface';
 import UpdateData from './components/AddNew/UpdateData';
+import EditDvdesign from './components/AddNew/DvDesign/EditDvdesign';
+import EditDvLogin from './components/AddNew/DvLogin/EditDvlogin';
 
 
 function App() {
@@ -56,12 +58,29 @@ function App() {
               </AuthRoute>
             }
           />
+          <Route
+            path="edit-dvdesign/:id"
+            element={
+              <AuthRoute>
+                <EditDvdesign />
+              </AuthRoute>
+            }
+          />
 
           <Route
             path="dvlogin/:id"
             element={
               <AuthRoute>
                 <DvLogin />
+              </AuthRoute>
+            }
+          />
+
+          <Route
+            path="edit-dvlogin/:id"
+            element={
+              <AuthRoute>
+                <EditDvLogin />
               </AuthRoute>
             }
           />
@@ -84,43 +103,18 @@ function App() {
             }
           />
 
-          <Route
-            path="wbdetail/:id"
-            element={
-                <WBDetail />
-            }
-          />
+          <Route path="wbdetail/:id" element={<WBDetail />} />
 
-          <Route
-            path="dvdesign-popup/:id"
-            element={
-                <DvdesignPopup />
-            }
-          />
+          <Route path="dvdesign-popup/:id" element={<DvdesignPopup />} />
 
-          <Route
-            path="dvlogin-popup/:id"
-            element={
-                <DvloginPopup />
-            }
-          />
+          <Route path="dvlogin-popup/:id" element={<DvloginPopup />} />
 
-          <Route
-            path="swdetail-popup/:id"
-            element={
-                <SwdetailPopup />
-            }
-          />
+          <Route path="swdetail-popup/:id" element={<SwdetailPopup />} />
 
           <Route
             path="swinterface-popup/:id/:switchId"
-            element={
-                <SwinterfacePopup />
-            }
+            element={<SwinterfacePopup />}
           />
-
-
-
         </Routes>
       </BrowserRouter>
     </div>

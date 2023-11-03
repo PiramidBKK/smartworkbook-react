@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
 import { resetErrAction, resetSuccessAction } from "../users/globalActions/globalActions";
+import { fetchSingleDvdesignsAction } from "../dvloginSlice/dvloginSlice";
 
 
 const initialState ={
@@ -69,6 +70,43 @@ export const createDvdesignAction = createAsyncThunk(
     }
 );
 
+//update dvdesign
+export const updateDvdesignAction = createAsyncThunk(
+    'dvdesign/update',
+    async( {
+        vlanid,
+        vlanname,
+        ipsubnet,
+        gateway,
+        hostrange,
+        remark, 
+        id
+    } ,{rejectWithValue, getState, dispatch}) =>{
+        try{
+
+
+          const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+          const tokenConfig = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          };
+
+          //make request
+          const data = await axios.put(
+            `${baseURL}/dvdesign/${id}`,
+            { vlanid, vlanname, ipsubnet, gateway, hostrange, remark },
+            tokenConfig
+          );
+
+          return data;
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);
+        }
+    }
+);
+
 //Fetch all dvdesign
 export const fetchDvdesignsAction = createAsyncThunk(
     'dvdesign/list',
@@ -99,9 +137,9 @@ export const fetchDvdesignsAction = createAsyncThunk(
 );
 
 //fetch single dvdesign
-export const fetchSingleDvdesignsAction = createAsyncThunk(
+export const fetchDvdesignAction = createAsyncThunk(
     'dvdesign/details',
-    async(dvdesignId, {rejectWithValue, getState, dispatch}) =>{
+    async(id, {rejectWithValue, getState, dispatch}) =>{
         try{
 
             const token = getState()?.user?.useAuth?.userInfo?.data?.token
@@ -113,7 +151,7 @@ export const fetchSingleDvdesignsAction = createAsyncThunk(
 
             //make request
             const data = await axios.get(
-                `${baseURL}/dvdesign/${dvdesignId}`,
+                `${baseURL}/dvdesign/${id}`,
                 tokenConfig
 
             );
@@ -132,8 +170,7 @@ const dvdesignSlice = createSlice({
     initialState,
     extraReducers:(builder) =>{
         
-        //create
-        
+        //create    
         builder.addCase(createDvdesignAction.pending, (state) =>{
             state.loading = true;
         });
@@ -152,8 +189,27 @@ const dvdesignSlice = createSlice({
 
         });
 
-        //fetch dvdesign
-        
+        //update   
+        builder.addCase(updateDvdesignAction.pending, (state) =>{
+            state.loading = true;
+        });
+
+        builder.addCase(updateDvdesignAction.fulfilled, (state, action) =>{
+            state.loading = false;
+            state.dvdesign = action.payload;
+            state.isUpdated = true;
+        });
+
+        builder.addCase(updateDvdesignAction.rejected, (state, action) =>{
+            state.loading = false;
+            state.dvdesign = null
+            state.isUpdated = false;
+            state.error = action.payload;
+
+        });
+
+        //fetch dvdesigns
+
         builder.addCase(fetchDvdesignsAction.pending, (state) =>{
             state.loading = true;
         });
@@ -167,6 +223,26 @@ const dvdesignSlice = createSlice({
         builder.addCase(fetchDvdesignsAction.rejected, (state, action) =>{
             state.loading = false;
             state.dvdesigns = null
+            state.isAdded = false;
+            state.error = action.payload;
+
+        });
+
+        //fetch single dvdesigns
+        
+        builder.addCase(fetchDvdesignAction.pending, (state) =>{
+            state.loading = true;
+        });
+
+        builder.addCase(fetchDvdesignAction.fulfilled, (state, action) =>{
+            state.loading = false;
+            state.dvdesign = action.payload;
+            state.isAdded = true;
+        });
+
+        builder.addCase(fetchDvdesignAction.rejected, (state, action) =>{
+            state.loading = false;
+            state.dvdesign = null
             state.isAdded = false;
             state.error = action.payload;
 

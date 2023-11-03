@@ -3,6 +3,7 @@ import './DvloginPopup.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
+import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
 
 export default function DvloginPopup(){
     const dispatch = useDispatch();
@@ -27,6 +28,8 @@ export default function DvloginPopup(){
               <th>Username</th>
               <th>Password</th>
               <th>Ramark</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -35,8 +38,9 @@ export default function DvloginPopup(){
                 <td>{dvlogin.devicename}</td>
                 <td>{dvlogin.dvusername}</td>
                 <td>{dvlogin.dvpassword}</td>
-
                 <td>{dvlogin.remark}</td>
+                <td><Link to={`/edit-dvlogin/${dvlogin._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
+                <td><TrashIcon className='delete-trash'/></td>
               </tr>
             ))}
           </tbody>

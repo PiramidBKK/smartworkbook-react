@@ -14,6 +14,8 @@
 
 }
 
+
+
 .dvdesign-popup-main h2{
     padding: 10px;
     text-align: center;
@@ -32,6 +34,15 @@ table {
     text-align: center;
     
   }
+
+.delete-trash{
+    width: 25px;
+}
+
+td .pencil-edit{
+    width: 25px;
+
+}
 
 .popup-dvdesign-button{
     display: flex;
