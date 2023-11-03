@@ -25,14 +25,28 @@ export default function EditDvdesign  (){
 
 
   const [formData, setFormData] = useState({
-    vlanid: dvdesign?.data?.dvdesign?.vlanid,
-    vlanname: dvdesign?.data?.dvdesign?.vlanname,
-    ipsubnet:  dvdesign?.data?.dvdesign?.ipsubnet,
-    gateway:  dvdesign?.data?.dvdesign?.gateway,
-    hostrange:  dvdesign?.data?.dvdesign?.hostrange,
-    remark: dvdesign?.data?.dvdesign?.remark,
+        vlanid: '',
+        vlanname:'',
+        ipsubnet: '',
+        gateway: '',
+        hostrange: '',
+        remark: '',
 
   });
+
+
+  useEffect(() => {
+    if (dvdesign?.data?.dvdesign) {
+      setFormData({
+        vlanid: dvdesign?.data?.dvdesign?.vlanid,
+        vlanname: dvdesign?.data?.dvdesign?.vlanname,
+        ipsubnet:  dvdesign?.data?.dvdesign?.ipsubnet,
+        gateway:  dvdesign?.data?.dvdesign?.gateway,
+        hostrange:  dvdesign?.data?.dvdesign?.hostrange,
+        remark: dvdesign?.data?.dvdesign?.remark,
+      });
+    }
+  }, [dvdesign]);
 
   const configId = dvdesign?.data?.dvdesign?.config;
 
@@ -53,22 +67,17 @@ export default function EditDvdesign  (){
 
 
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    dispatch(updateDvdesignAction(
+    await dispatch(updateDvdesignAction(
       { 
         ...formData,
         id}
       ))
 
-    //   setFormData({
-    //     vlanid: '',
-    //     vlanname:'',
-    //     ipsubnet: '',
-    //     gateway: '',
-    //     hostrange: '',
-    //     remark: '',
-    //   })
+      window.location.reload();
+
+
     }
 
   

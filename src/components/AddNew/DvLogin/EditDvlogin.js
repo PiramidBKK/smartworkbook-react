@@ -15,16 +15,27 @@ export default function EditDvLogin (){
     dispatch(fetchDvloginAction(id))
   },[id, dispatch])
 
-  const {dvlogin, error, loading} = useSelector((state) => state?.dvlogin)
+  const {dvlogin,isUpdated, error, loading} = useSelector((state) => state?.dvlogin)
 
 
 
   const [formData, setFormData] = useState({
-    devicename: dvlogin?.data?.getsingledvlogin?.devicename,
-    dvusername: dvlogin?.data?.getsingledvlogin?.dvusername,
-    dvpassword: dvlogin?.data?.getsingledvlogin?.dvpassword,
-    remark: dvlogin?.data?.getsingledvlogin?.remark
+    devicename: "",
+    dvusername: "",
+    dvpassword: "",
+    remark: ""
   })
+
+  useEffect(() => {
+    if (dvlogin?.data?.getsingledvlogin) {
+      setFormData({
+        devicename: dvlogin?.data?.getsingledvlogin?.devicename,
+        dvusername: dvlogin?.data?.getsingledvlogin?.dvusername,
+        dvpassword: dvlogin?.data?.getsingledvlogin?.dvpassword,
+        remark: dvlogin?.data?.getsingledvlogin?.remark
+      });
+    }
+  }, [dvlogin]);
 
 
   const {
@@ -39,14 +50,16 @@ export default function EditDvLogin (){
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
-    const configId = dvlogin?.data?.getsingledvlogin?.config;
 
 
-    const onSubmitHandler = (e) =>{
+    const onSubmitHandler = async (e) =>{
       e.preventDefault();
-      dispatch(updateDvloginAction({...formData ,id}))
+      await dispatch(updateDvloginAction({...formData ,id}))
+      window.location.reload();
 
     }
+    const configId = dvlogin?.data?.getsingledvlogin?.config;
+
 
     return (
       <div className="AddDvLoginPage">

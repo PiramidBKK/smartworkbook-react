@@ -14,6 +14,7 @@ const initialState = {
     isDeleted: false,
 }
 
+//create switch detial
 export const createSwDetailAction = createAsyncThunk(
     'swdetail/addnew',
     async(
@@ -59,38 +60,46 @@ export const createSwDetailAction = createAsyncThunk(
         }
 );
 
-export const fetchSwDetailAction = createAsyncThunk(
-    'swdetail/details',
+//create switch detial
+export const updateSwdetailAction = createAsyncThunk(
+    'swdetail/update',
     async(
-        swdetailId 
-        ,{rejectWithValue, getState, dispatch}
-    ) =>{
-        try{
-            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
-            const tokenConfig = {
-              headers: {
-                Authorization: `Bearer ${token}`,
+        {hostname,location ,brand ,model, modelimg ,serialnumber,macaddress ,ipaddress ,subnetmask, defaultgateway,remark, id }
+        ,{rejectWithValue, getState, dispatch}) =>{
 
-            },
-            }; 
+            try{
+                const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+                const tokenConfig = {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+    
+                },
+                }; 
 
-            const data = await axios.get(
-                `${baseURL}/swdetail/${swdetailId}`,
-                tokenConfig
-            )
 
-            return data;
-        }catch(error){
-            console.log(error);
-            return rejectWithValue(error?.response?.data);  
+                const data = await axios.put(
+                    `${baseURL}/swdetail/${id}`,
+                    {hostname,location ,brand ,model, modelimg ,serialnumber,macaddress ,ipaddress ,subnetmask, defaultgateway,remark },
+                    tokenConfig
+                )
+
+                return data;
+
+
+
+            }catch(error){
+                console.log(error);
+                return rejectWithValue(error?.response?.data);  
+            }
         }
-    }
-)
+);
+
+//fetch all switch details
 
 export const fetchSwDetailsAction = createAsyncThunk(
     'swdetail/list',
     async(
-        {hostname,location ,brand ,model ,serialnumber,macaddress ,ipaddress ,subnetmask, defaultgateway,remark }
+        payload 
         ,{rejectWithValue, getState, dispatch}
     ) =>{
         try{
@@ -115,7 +124,36 @@ export const fetchSwDetailsAction = createAsyncThunk(
     }
 )
 
+//fetch single switch details
 
+export const fetchSwDetailAction = createAsyncThunk(
+    'swdetail/details',
+    async(
+         id,{rejectWithValue, getState, dispatch}) =>{
+      console.log(id);
+        try{
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+            const data = await axios.get(
+                `${baseURL}/swdetail/${id}`,
+                tokenConfig
+            )
+
+            return data;
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);  
+        }
+    }
+)
+
+//Slices
 const swdetailsSlice = createSlice({
     name: "swdetails",
     initialState,
@@ -134,7 +172,25 @@ const swdetailsSlice = createSlice({
           builder.addCase(createSwDetailAction.rejected, (state, action) => {
             state.loading = false;
             state.swdetail = null;
-            state.isAdded = false;
+            state.isUpdated = false;
+            state.error = action.payload;
+          });
+
+        //update
+        builder.addCase(updateSwdetailAction.pending, (state) => {
+            state.loading = true;
+          });
+  
+          builder.addCase(updateSwdetailAction.fulfilled, (state, action) => {
+            state.loading = false;
+            state.swdetail = action.payload;
+            state.isUpdated = true;
+          });
+  
+          builder.addCase(updateSwdetailAction.rejected, (state, action) => {
+            state.loading = false;
+            state.swdetail = null;
+            state.isUpdated = false;
             state.error = action.payload;
           });
 
@@ -163,14 +219,14 @@ const swdetailsSlice = createSlice({
   
           builder.addCase(fetchSwDetailAction.fulfilled, (state, action) => {
             state.loading = false;
-            state.swdetails = action.payload;
-            state.swinterfaces = [action.payload.swdetail._id] = action.payload.swinterfaces;
+            state.swdetail = action.payload;
+            // state.swinterfaces[action.payload.swdetail._id] = action.payload.swinterfaces;
             state.isAdded = true;
           });
   
           builder.addCase(fetchSwDetailAction.rejected, (state, action) => {
             state.loading = false;
-            state.swdetails = null;
+            state.swdetail = null;
             state.isAdded = false;
             state.error = action.payload;
           });

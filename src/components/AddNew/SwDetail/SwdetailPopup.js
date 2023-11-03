@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchSwDetailsAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import Swdetail from './Swdetail';
+import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
+
 
 export default function SwdetailPopup(){
     const dispatch = useDispatch();
@@ -32,6 +34,8 @@ export default function SwdetailPopup(){
             <th>Subnetmask</th>
             <th>Default Gateway</th>
             <th>Ramark</th>
+            <th>Edit</th>
+              <th>Delete</th>
           </thead>
           <tbody>
             {swdetailData?.map((swdetail) => (
@@ -46,6 +50,8 @@ export default function SwdetailPopup(){
                 <td>{swdetail.subnetmask}</td>
                 <td>{swdetail.defaultgateway}</td>
                 <td>{swdetail.remark}</td>
+                <td><Link to={`/edit-swdetail/${swdetail._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
+                <td><TrashIcon className='delete-trash'/></td>
               </tr>
             ))}
           </tbody>

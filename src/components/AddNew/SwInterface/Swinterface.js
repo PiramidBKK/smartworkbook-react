@@ -53,9 +53,11 @@ export default function SwitchInterface (){
       setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-  const onSubmitHandler = (e) =>{
+  const onSubmitHandler = async (e) =>{
     e.preventDefault();
-    dispatch(createSwinterfaceAction({...formData, id, switchId}))
+    await dispatch(createSwinterfaceAction({...formData, id, switchId}));
+
+    window.location.reload();
 
   }
 

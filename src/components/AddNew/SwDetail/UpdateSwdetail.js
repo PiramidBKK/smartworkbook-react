@@ -4,7 +4,7 @@ import React, { useEffect,useState } from "react";
 import makeAnimated from "react-select/animated";
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from '../../LoadingComp/LoadingComponent';
-import { createSwDetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
+import { createSwDetailAction, fetchSwDetailAction, updateSwdetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import Select from "react-select";
 import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
 
@@ -16,20 +16,59 @@ export default function Swdetail (){
 
   const {id} = useParams();
 
+  useEffect(()=>{
+    dispatch(fetchSwDetailAction(id))
+  },[id, dispatch])
 
-  const [formData, setFormData] = useState({
-    hostname: "", 
-    location: "", 
-    brand: "", 
-    model: "", 
-    serialnumber: "", 
-    macaddress: "",  
-    ipaddress: "", 
-    subnetmask: "",
-    defaultgateway: "", 
-    remark: "" ,
+  const {swdetail, isUpdated,loading, error} = useSelector((state)=> state?.swdetail)
+  
+  const configId = swdetail?.data?.singleSwdetail?.config;
+  
+
+//   const [formData, setFormData] = useState({
+//     hostname: swdetail?.data?.singleSwdetail?.hostname, 
+//     location: swdetail?.data?.singleSwdetail?.location, 
+//     brand: swdetail?.data?.singleSwdetail?.brand, 
+//     model: swdetail?.data?.singleSwdetail?.model, 
+//     serialnumber: swdetail?.data?.singleSwdetail?.serialnumber, 
+//     macaddress: swdetail?.data?.singleSwdetail?.macaddress,  
+//     ipaddress: swdetail?.data?.singleSwdetail?.ipaddress, 
+//     subnetmask: swdetail?.data?.singleSwdetail?.subnetmask,
+//     defaultgateway: swdetail?.data?.singleSwdetail?.defaultgateway, 
+//     remark: swdetail?.data?.singleSwdetail?.remark,
     
-  })
+//   })
+
+const [formData, setFormData] = useState({
+  hostname: "",
+  location: "",
+  brand: "",
+  model: "",
+  serialnumber: "",
+  macaddress: "",
+  ipaddress: "",
+  subnetmask: "",
+  defaultgateway: "",
+  remark: "",
+});
+
+useEffect(() => {
+  if (swdetail && swdetail.data && swdetail.data.singleSwdetail) {
+    const singleSwdetail = swdetail.data.singleSwdetail;
+    setFormData({
+      hostname: singleSwdetail.hostname,
+      location: singleSwdetail.location,
+      brand: singleSwdetail.brand,
+      model: singleSwdetail.model,
+      serialnumber: singleSwdetail.serialnumber,
+      macaddress: singleSwdetail.macaddress,
+      ipaddress: singleSwdetail.ipaddress,
+      subnetmask: singleSwdetail.subnetmask,
+      defaultgateway: singleSwdetail.defaultgateway,
+      remark: singleSwdetail.remark,
+    });
+  }
+}, [swdetail]);
 
   const {
     hostname, 
@@ -45,14 +84,12 @@ export default function Swdetail (){
     
   } = formData
 
-  const {swdetail, isAdded,loading, error} = useSelector((state)=> state?.swdetail)
   const {config} = useSelector((state)=> state?.configs);
 
 
-
   useEffect(()=>{
-    dispatch(fetchconfigAction(id))
-  },[id])
+    dispatch(fetchconfigAction(configId))
+  },[configId])
 
   //switch image
   const [selectSwitchImg, setSelectSwitchImg] = useState([])
@@ -94,7 +131,7 @@ export default function Swdetail (){
     const onSubmitHandler = async (e) =>{
       e.preventDefault();
       const modelimg = imageOptionConverted.find(option => option.label === selectedLabel)?.value;
-      dispatch(createSwDetailAction({
+      await dispatch(updateSwdetailAction({
         ...formData,
         modelimg
         ,id
@@ -105,14 +142,16 @@ export default function Swdetail (){
 
     }
 
+
+
     return (
       <div className="AddSwDetailPage">
         <h1>Switch Details</h1>
 
         <div className="Preview">
-          <Link to={`/swdetail-popup/${id}`}>
+          <Link to={`/swdetail-popup/${configId}`}>
             <button className="preview-btn">Preview</button>
-          </Link>{" "}
+          </Link>
         </div>
         <form onSubmit={onSubmitHandler}>
           <div className="main-form">
@@ -230,7 +269,7 @@ export default function Swdetail (){
             </div>
 
             <div className="swdetail-button">
-              <Link to={`/wbdetail/${id}`} className="back-btn-swdetail">
+              <Link to={`/wbdetail/${configId}`} className="back-btn-swdetail">
                 <div className="back-swdetail">
                   <h3>Back</h3>
                 </div>

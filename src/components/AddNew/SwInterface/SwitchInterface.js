@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 import { fetchSwInterfacesAction } from '../../../redux/slices/swinterfaceSlice/swinterfaceSlice';
 import { fetchSwDetailsAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import { fetchconfigsAction } from '../../../redux/slices/configSlice/configSlice';
+import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
 
 export default function SwinterfacePopup(){
     const dispatch = useDispatch();
@@ -94,6 +95,8 @@ export default function SwinterfacePopup(){
             <th>Mode</th>
             <th>Label</th>
             <th>Ramark</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </thead>
           <tbody>
             {swinterfaceData?.map((swinterface) => (
@@ -105,6 +108,8 @@ export default function SwinterfacePopup(){
                 <td>{swinterface.mode}</td>
                 <td>{swinterface.label}</td>
                 <td>{swinterface.remark}</td>
+                <td><Link to={`/edit-swinterface/${swinterface._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
+                <td><TrashIcon className='delete-trash'/></td>
               </tr>
             ))}
           </tbody>

@@ -19,6 +19,8 @@ import SwinterfacePopup from './components/AddNew/SwInterface/SwitchInterface';
 import UpdateData from './components/AddNew/UpdateData';
 import EditDvdesign from './components/AddNew/DvDesign/EditDvdesign';
 import EditDvLogin from './components/AddNew/DvLogin/EditDvlogin';
+import EditSwdetail from './components/AddNew/SwDetail/UpdateSwdetail';
+import EditSwitchInterface from './components/AddNew/SwInterface/UpdateSwinterface';
 
 
 function App() {
@@ -95,10 +97,28 @@ function App() {
           />
 
           <Route
+            path="edit-swinterface/:id"
+            element={
+              <AuthRoute>
+                <EditSwitchInterface />
+              </AuthRoute>
+            }
+          />
+
+          <Route
             path="swdetail/:id"
             element={
               <AuthRoute>
                 <Swdetail />
+              </AuthRoute>
+            }
+          />
+
+          <Route
+            path="edit-swdetail/:id"
+            element={
+              <AuthRoute>
+                <EditSwdetail />
               </AuthRoute>
             }
           />
