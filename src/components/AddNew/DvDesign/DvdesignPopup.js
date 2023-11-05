@@ -55,7 +55,11 @@ export default function DvdesignPopup(){
               <td>{dvdesign.hostrange}</td>
               <td>{dvdesign.remark}</td>
               <td><Link to={`/edit-dvdesign/${dvdesign._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
-              <td><TrashIcon className='delete-trash'/></td>
+              <td>
+                  <Link to={`/delete-dvdesign/${dvdesign._id}`}>
+                    <TrashIcon className="delete-trash"  />
+                  </Link>
+              </td>
             </tr>
           ))}
         </tbody>

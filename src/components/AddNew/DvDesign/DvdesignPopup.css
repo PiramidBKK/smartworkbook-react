@@ -37,10 +37,13 @@ table {
 
 .delete-trash{
     width: 25px;
+    color: black;
+
 }
 
 td .pencil-edit{
     width: 25px;
+    color: black;
 
 }
 

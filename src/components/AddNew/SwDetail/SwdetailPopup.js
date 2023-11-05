@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { fetchSwDetailsAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import Swdetail from './Swdetail';
 import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
+import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
 
 
 export default function SwdetailPopup(){
@@ -12,8 +13,8 @@ export default function SwdetailPopup(){
     const {id} = useParams();
 
     useEffect(()=>{
-        dispatch(fetchSwDetailsAction(id))
-    });
+        dispatch(fetchconfigAction(id))
+    },[id]);
 
     const {config, error, loading} = useSelector((state)=> state?.configs)
     const swdetailData = config?.data?.config?.swdetails;
@@ -51,8 +52,12 @@ export default function SwdetailPopup(){
                 <td>{swdetail.defaultgateway}</td>
                 <td>{swdetail.remark}</td>
                 <td><Link to={`/edit-swdetail/${swdetail._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
-                <td><TrashIcon className='delete-trash'/></td>
-              </tr>
+                <td>
+                  <Link to={`/delete-swdetail/${swdetail._id}`}>
+                    <TrashIcon className="delete-trash"  />
+                  </Link>
+              </td>
+            </tr>
             ))}
           </tbody>
         </table>

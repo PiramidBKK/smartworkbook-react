@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
 import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
+import { useState } from 'react';
 
 export default function DvloginPopup(){
     const dispatch = useDispatch();
@@ -13,6 +14,9 @@ export default function DvloginPopup(){
     useEffect(()=>{
         dispatch(fetchconfigAction(id))
     },[id])
+
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [itemDelete, setItemDelete] = useState();
 
     const {config, error, loading} = useSelector((state)=> state?.configs)
 
@@ -39,27 +43,34 @@ export default function DvloginPopup(){
                 <td>{dvlogin.dvusername}</td>
                 <td>{dvlogin.dvpassword}</td>
                 <td>{dvlogin.remark}</td>
-                <td><Link to={`/edit-dvlogin/${dvlogin._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
-                <td><TrashIcon className='delete-trash'/></td>
+                <td>
+                  <Link to={`/edit-dvlogin/${dvlogin._id}`}>
+                    <PencilSquareIcon className="pencil-edit" />
+                  </Link>
+                </td>
+                <td>
+                  <Link to={`/delete-dvlogin/${dvlogin._id}`}>
+                    <TrashIcon className="delete-trash"  />
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
 
-        <div className='popup-dvdesign-button'>
 
+        <div className="popup-dvdesign-button">
+          <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
+            <div className="back-dvdesign">
+              <h3>Back</h3>
+            </div>
+          </Link>
 
-        <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
-          <div className="back-dvdesign">
-            <h3>Back</h3>
-          </div>
-        </Link>
-
-        <Link to={`/dvlogin/${id}`} className="ok-btn-dvdesign">
-          <div className="ok-dvdesign">
-            <h3>OK</h3>
-          </div>
-        </Link>
+          <Link to={`/dvlogin/${id}`} className="ok-btn-dvdesign">
+            <div className="ok-dvdesign">
+              <h3>OK</h3>
+            </div>
+          </Link>
         </div>
       </div>
     );

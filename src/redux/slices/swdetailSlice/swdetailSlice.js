@@ -103,13 +103,13 @@ export const fetchSwDetailsAction = createAsyncThunk(
         ,{rejectWithValue, getState, dispatch}
     ) =>{
         try{
-            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
-            const tokenConfig = {
-              headers: {
-                Authorization: `Bearer ${token}`,
+          const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+          const tokenConfig = {
+            headers: {
+              Authorization: `Bearer ${token}`,
 
-            },
-            }; 
+          },
+          }; 
 
             const data = await axios.get(
                 `${baseURL}/swdetail`,
@@ -125,9 +125,35 @@ export const fetchSwDetailsAction = createAsyncThunk(
 )
 
 //fetch single switch details
-
 export const fetchSwDetailAction = createAsyncThunk(
     'swdetail/details',
+    async(
+         id,{rejectWithValue, getState, dispatch}) =>{
+        try{
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+            const data = await axios.get(
+                `${baseURL}/swdetail/${id}`,
+                tokenConfig
+            )
+
+            return data;
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);  
+        }
+    }
+)
+
+//delete switch details
+export const deleteSwDetailAction = createAsyncThunk(
+    'swdetail/delete',
     async(
          id,{rejectWithValue, getState, dispatch}) =>{
       console.log(id);
@@ -140,7 +166,7 @@ export const fetchSwDetailAction = createAsyncThunk(
             },
             }; 
 
-            const data = await axios.get(
+            const data = await axios.delete(
                 `${baseURL}/swdetail/${id}`,
                 tokenConfig
             )
@@ -220,13 +246,28 @@ const swdetailsSlice = createSlice({
           builder.addCase(fetchSwDetailAction.fulfilled, (state, action) => {
             state.loading = false;
             state.swdetail = action.payload;
-            // state.swinterfaces[action.payload.swdetail._id] = action.payload.swinterfaces;
             state.isAdded = true;
           });
   
           builder.addCase(fetchSwDetailAction.rejected, (state, action) => {
             state.loading = false;
             state.swdetail = null;
+            state.isAdded = false;
+            state.error = action.payload;
+          });
+
+        //delete swdetail
+        builder.addCase(deleteSwDetailAction.pending, (state) => {
+            state.loading = true;
+          });
+  
+          builder.addCase(deleteSwDetailAction.fulfilled, (state, action) => {
+            state.loading = false;
+            state.isAdded = true;
+          });
+  
+          builder.addCase(deleteSwDetailAction.rejected, (state, action) => {
+            state.loading = false;
             state.isAdded = false;
             state.error = action.payload;
           });

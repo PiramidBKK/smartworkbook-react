@@ -136,6 +136,34 @@ export const fetchSwInterfaceAction = createAsyncThunk(
     }
 )
 
+//fetch single
+export const deleteSwInterfaceAction = createAsyncThunk(
+    "swinterface/delete",
+    async(id,{rejectWithValue, getState, dispatch}) =>{
+        try{
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+            const data = await axios.delete(
+                `${baseURL}/swinterface/${id}`,
+                tokenConfig
+            )
+
+            return data;
+
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data); 
+
+        }
+    }
+)
+
 const swinterfaceSlice = createSlice({
     name: "swinterfaces",
     initialState,
@@ -217,6 +245,26 @@ const swinterfaceSlice = createSlice({
     builder.addCase(fetchSwInterfaceAction.rejected, (state, action)=>{
         state.loading = false;
         state.swinterface = null;
+        state.isAdded = false;
+        state.error = action.payload;
+
+    })
+
+    //delete swinterfaces
+
+    builder.addCase(deleteSwInterfaceAction.pending, (state)=>{
+        state.loading = true;
+
+    })
+
+    builder.addCase(deleteSwInterfaceAction.fulfilled, (state, action)=>{
+        state.loading = false;
+        state.isAdded = true;
+
+    })
+
+    builder.addCase(deleteSwInterfaceAction.rejected, (state, action)=>{
+        state.loading = false;
         state.isAdded = false;
         state.error = action.payload;
 

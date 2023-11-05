@@ -14,8 +14,7 @@ export default function SwinterfacePopup(){
     useEffect(()=>{
         dispatch(fetchconfigsAction(id))
         dispatch(fetchSwDetailsAction(id))
-        dispatch(fetchSwInterfacesAction(switchId))
-    },[id, switchId])
+    },[id])
 
     const {config, error, loading} = useSelector((state)=> state?.configs)
     
@@ -109,8 +108,12 @@ export default function SwinterfacePopup(){
                 <td>{swinterface.label}</td>
                 <td>{swinterface.remark}</td>
                 <td><Link to={`/edit-swinterface/${swinterface._id}`}><PencilSquareIcon className='pencil-edit'/></Link></td>
-                <td><TrashIcon className='delete-trash'/></td>
-              </tr>
+                <td>
+                  <Link to={`/delete-swinterface/${swinterface._id}`}>
+                    <TrashIcon className="delete-trash"  />
+                  </Link>
+              </td>              
+            </tr>
             ))}
           </tbody>
         </table>

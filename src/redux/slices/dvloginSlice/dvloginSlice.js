@@ -141,6 +141,38 @@ export const fetchDvloginAction = createAsyncThunk(
     }
 );
 
+//fetch single dvlogin
+export const deleteDvloginAction = createAsyncThunk(
+    'dvlogin/delete',
+    async(id, {rejectWithValue, getState, dispatch}) =>{
+        console.log(id);
+        try{
+
+
+          const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+            //make request
+            const data = await axios.delete(
+                `${baseURL}/dvlogin/${id}`,
+                tokenConfig
+
+            );
+
+            return data;
+
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);
+        }
+    }
+);
+
 const dvloginsSlice = createSlice({
     name: "dvlogins",
     initialState,
@@ -215,6 +247,23 @@ const dvloginsSlice = createSlice({
             state.loading = false;
             state.dvlogin = null
             state.isAdded = false;
+            state.error = action.payload;
+
+        });
+
+        //delete dvlogin
+        builder.addCase(deleteDvloginAction.pending, (state) =>{
+            state.loading = true;
+        });
+
+        builder.addCase(deleteDvloginAction.fulfilled, (state, action) =>{
+            state.loading = false;
+            state.isDeleted = true;
+        });
+
+        builder.addCase(deleteDvloginAction.rejected, (state, action) =>{
+            state.loading = false;
+            state.isDeleted = false;
             state.error = action.payload;
 
         });

@@ -21,6 +21,10 @@ import EditDvdesign from './components/AddNew/DvDesign/EditDvdesign';
 import EditDvLogin from './components/AddNew/DvLogin/EditDvlogin';
 import EditSwdetail from './components/AddNew/SwDetail/UpdateSwdetail';
 import EditSwitchInterface from './components/AddNew/SwInterface/UpdateSwinterface';
+import DeleteDvdesign from './components/AddNew/DvDesign/DeleteDvdesign';
+import DeleteDvlogin from './components/AddNew/DvLogin/DeleteDvlogin';
+import DeleteSwinterface from './components/AddNew/SwInterface/DeleteSwinterface';
+import DeleteSwdetail from './components/AddNew/SwDetail/DeleteSwdetail';
 
 
 function App() {
@@ -68,6 +72,14 @@ function App() {
               </AuthRoute>
             }
           />
+          <Route
+            path="delete-dvdesign/:id"
+            element={
+              <AuthRoute>
+                <DeleteDvdesign />
+              </AuthRoute>
+            }
+          />
 
           <Route
             path="dvlogin/:id"
@@ -83,6 +95,15 @@ function App() {
             element={
               <AuthRoute>
                 <EditDvLogin />
+              </AuthRoute>
+            }
+          />
+
+          <Route
+            path="delete-dvlogin/:id"
+            element={
+              <AuthRoute>
+                <DeleteDvlogin />
               </AuthRoute>
             }
           />
@@ -106,6 +127,15 @@ function App() {
           />
 
           <Route
+            path="delete-swinterface/:id"
+            element={
+              <AuthRoute>
+                <DeleteSwinterface />
+              </AuthRoute>
+            }
+          />
+
+          <Route
             path="swdetail/:id"
             element={
               <AuthRoute>
@@ -122,6 +152,16 @@ function App() {
               </AuthRoute>
             }
           />
+
+          <Route
+            path="delete-swdetail/:id"
+            element={
+              <AuthRoute>
+                <DeleteSwdetail />
+              </AuthRoute>
+            }
+          />
+
 
           <Route path="wbdetail/:id" element={<WBDetail />} />
 

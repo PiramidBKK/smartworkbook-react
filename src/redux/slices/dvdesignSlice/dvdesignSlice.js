@@ -113,12 +113,13 @@ export const fetchDvdesignsAction = createAsyncThunk(
     async(payload, {rejectWithValue, getState, dispatch}) =>{
         try{
 
-            const token = getState()?.user?.useAuth?.userInfo?.data?.token
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
             const tokenConfig = {
-                headers:{
-                    Authorization: `Bearer ${token}`
-                }
-            }
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
 
             //make request
             const data = await axios.get(
@@ -151,6 +152,36 @@ export const fetchDvdesignAction = createAsyncThunk(
 
             //make request
             const data = await axios.get(
+                `${baseURL}/dvdesign/${id}`,
+                tokenConfig
+
+            );
+
+            return data;
+
+        }catch(error){
+            console.log(error);
+            return rejectWithValue(error?.response?.data);
+        }
+    }
+);
+
+//delete dvdesign
+export const deleteDvdesignAction = createAsyncThunk(
+    'dvdesign/delete',
+    async(id, {rejectWithValue, getState, dispatch}) =>{
+        try{
+
+            const token = getState()?.users?.userAuth?.userInfo?.data?.token;
+            const tokenConfig = {
+              headers: {
+                Authorization: `Bearer ${token}`,
+
+            },
+            }; 
+
+            //make request
+            const data = await axios.delete(
                 `${baseURL}/dvdesign/${id}`,
                 tokenConfig
 
@@ -244,6 +275,23 @@ const dvdesignSlice = createSlice({
             state.loading = false;
             state.dvdesign = null
             state.isAdded = false;
+            state.error = action.payload;
+
+        });
+
+        //delete dvdesigns        
+        builder.addCase(deleteDvdesignAction.pending, (state) =>{
+            state.loading = true;
+        });
+
+        builder.addCase(deleteDvdesignAction.fulfilled, (state, action) =>{
+            state.loading = false;
+            state.isDeleted = true;
+        });
+
+        builder.addCase(deleteDvdesignAction.rejected, (state, action) =>{
+            state.loading = false;
+            state.isDeleted = false;
             state.error = action.payload;
 
         });
