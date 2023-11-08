@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './SwitchInterface.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchSwInterfacesAction } from '../../../redux/slices/swinterfaceSlice/swinterfaceSlice';
 import { fetchSwDetailsAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
@@ -22,8 +22,6 @@ export default function SwinterfacePopup(){
 
     const swdetailName = swdetailData?.find((swdetail)=> swdetail._id === switchId)
     const swinterfaceData = swdetailName ? swdetailName.swinterfaces : [];
-
-    //switch images
 
 
 

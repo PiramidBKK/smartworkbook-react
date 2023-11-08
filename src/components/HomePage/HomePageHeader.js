@@ -50,8 +50,7 @@ const HomePageHeader = () =>{
                 <div className="export">
                   <ArrowUpOnSquareIcon className="exporticon" />
                   <div className="exporttext">Export</div>
-                  <div className="lineup" />
-                  <ChevronDownIcon className="down" />
+
                 </div>
               </>
             )}

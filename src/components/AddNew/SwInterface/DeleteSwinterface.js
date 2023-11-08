@@ -25,7 +25,6 @@ export default function DeleteSwinterface () {
 
     const swdetailId = config?.data?.config?.swdetails
 
-    console.log(swdetailId);
     
 
     const onClose = (e) =>{
@@ -35,7 +34,7 @@ export default function DeleteSwinterface () {
     const onDelete = async (e) => {
       e.preventDefault();
       await dispatch(deleteSwInterfaceAction(id));
-
+      console.log(configId);
       window.location.href = `/wbdetail/${configId}`;
     };
     
