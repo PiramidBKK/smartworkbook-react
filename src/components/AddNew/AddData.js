@@ -121,7 +121,7 @@ export default function AddData() {
       <h1>ADD DATA</h1>
       <form onSubmit={onSubmitHandler}>
         <div className="AddProjectname">
-        {error && <p className='displayError-add-data'>{error?.message}</p>}
+        <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
 
           <label>Projectname</label>
           <input

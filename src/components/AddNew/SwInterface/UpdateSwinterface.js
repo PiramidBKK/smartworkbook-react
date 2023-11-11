@@ -71,8 +71,11 @@ export default function EditSwitchInterface (){
   return (
     <div className="EditSwInterface">
       <h1> Edit Switch {interfaceData?.port} </h1>
+      
       <div className="Preview"></div>
       <form onSubmit={onSubmitHandler}>
+      <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
+
         <div className="main-form">
           <div className="st-form"></div>
 

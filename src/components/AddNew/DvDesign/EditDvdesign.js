@@ -86,9 +86,7 @@ export default function EditDvdesign  (){
   return (
     <div className="AddDvDesignPage">
       <h1>Edit Vlan</h1>
-      {error && (
-        <p className="displayError-add-data-dvdesign">{error?.message}</p>
-      )}
+
 
         <div className="Preview">
           <Link to={`/dvdesign-popup/${configId}`}>
@@ -99,6 +97,8 @@ export default function EditDvdesign  (){
 
 
       <form onSubmit={onSubmitHandler}>
+      <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
+
         <div className="main-form">
           <div className="st-form">
             <div className="vlanid-form">

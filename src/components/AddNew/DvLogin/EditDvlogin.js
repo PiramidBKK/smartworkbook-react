@@ -64,15 +64,15 @@ export default function EditDvLogin (){
     return (
       <div className="AddDvLoginPage">
         <h1>Edit User Login</h1>
-        {error && (
-        <p className="displayError-add-data-dvdesign">{error?.message}</p>
-      )}
+
         <div className="Preview">
           <Link to={`/dvlogin-popup/${configId}`}>
             <button className="preview-btn">Preview</button>
           </Link>
         </div>
         <form onSubmit={onSubmitHandler}>
+        <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
+
           <div className="main-form">
             <div className="st-form">
               <div className="dvusername-form">

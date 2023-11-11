@@ -57,7 +57,7 @@ export default function SwitchInterface (){
     e.preventDefault();
     await dispatch(createSwinterfaceAction({...formData, id, switchId}));
 
-    window.location.reload();
+    // window.location.reload();
 
   }
 
@@ -71,6 +71,8 @@ export default function SwitchInterface (){
           </Link>{" "}
         </div>
         <form onSubmit={onSubmitHandler}>
+        <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
+
           <div className='main-form'>
           <div className="st-form">
             

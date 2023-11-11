@@ -154,6 +154,8 @@ useEffect(() => {
           </Link>
         </div>
         <form onSubmit={onSubmitHandler}>
+        <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
+
           <div className="main-form">
             <div className="st-form">
               <div className="hostname-form">
