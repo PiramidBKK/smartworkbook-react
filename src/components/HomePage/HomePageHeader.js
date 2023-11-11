@@ -14,23 +14,47 @@ const HomePageHeader = () =>{
 
   const dispatch = useDispatch();
 
-
-  const location = useLocation();
-  const id = location.pathname.split('/').pop();
-
-  // useEffect(() =>{
-  //   fetchconfigAction(id)
-  // },[id])
-
-  // const {config} = useSelector((state) => state?.configs)
-
-
   const [exportClick, setExportClick] = useState(false);
 
-  const handleExportClick = () =>{
-    console.log("hello");
-    setExportClick(true);
+  const theLocation = useLocation();
+
+
+  const pathlocation = theLocation.pathname;
+  const arrayPath = theLocation.pathname.split('/');
+  const switchId = arrayPath[arrayPath.length - 2]
+  const id = arrayPath.pop();
+
+
+
+
+  const locationToExport = () =>{
+    if(pathlocation === `/dvdesign-popup/${id}`){
+      window.location.href = `/dvlogin-popup/${id}`;
+
+    }
+    else if(pathlocation === `/dvlogin-popup/${id}`){
+
+    }
+    else if(pathlocation === `/swdetail-popup/${id}`){
+
+    }
+    else if(pathlocation === `/swinterface-popup/${switchId}/${id}`){
+      window.location.href = `/swinterface-popup/${switchId}/${id}`;
+    }
   }
+
+  const handleExportClick = async() =>{
+    setExportClick(true);
+
+  }
+
+  useEffect(() =>{
+    if(exportClick === true){
+      locationToExport();
+    }
+  },[exportClick])
+
+
 
   //get user login from local storage
   const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -69,13 +93,13 @@ const HomePageHeader = () =>{
             </Link>
 
             {isLoggedIn && (
-              <><Link to={`export-page/${id}`}>
-                <div className="export" >
+              <>
+                <div className="export" onClick={handleExportClick}>
                   
                   <ArrowUpOnSquareIcon className="exporticon" />
                   <div className="exporttext">Export</div>
 
-                </div></Link>
+                </div>
               </>
             )}
           </div>
@@ -106,7 +130,6 @@ const HomePageHeader = () =>{
           )}
 
         </div>
-        {exportClick && <SwinterfacePopup />}
 
       </header>
     );

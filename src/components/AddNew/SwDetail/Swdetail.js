@@ -94,7 +94,7 @@ export default function Swdetail (){
     const onSubmitHandler = async (e) =>{
       e.preventDefault();
       const modelimg = imageOptionConverted.find(option => option.label === selectedLabel)?.value;
-      dispatch(createSwDetailAction({
+      await dispatch(createSwDetailAction({
         ...formData,
         modelimg
         ,id

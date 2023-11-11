@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './SwitchInterface.css'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { fetchSwInterfacesAction } from '../../../redux/slices/swinterfaceSlice/swinterfaceSlice';
-import { fetchSwDetailsAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
+import { fetchSwDetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import { fetchconfigsAction } from '../../../redux/slices/configSlice/configSlice';
 import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
 
@@ -11,18 +10,22 @@ export default function SwinterfacePopup(){
     const dispatch = useDispatch();
     const {id, switchId} = useParams();
 
+
+
     useEffect(()=>{
-        dispatch(fetchconfigsAction(id))
-        dispatch(fetchSwDetailsAction(id))
-    },[id])
+      dispatch(fetchSwDetailAction(switchId))
+    },[switchId, dispatch])
+  
+    const {swdetail} = useSelector((state)=> state?.swdetail);
 
-    const {config, error, loading} = useSelector((state)=> state?.configs)
     
-    const swdetailData = config?.data?.config?.swdetails;
+    const swdetailData = swdetail?.data?.singleSwdetail;
 
-    const swdetailName = swdetailData?.find((swdetail)=> swdetail._id === switchId)
+    console.log(swdetailData);
+    
+
+    const swdetailName = swdetailData;
     const swinterfaceData = swdetailName ? swdetailName.swinterfaces : [];
-
 
 
     return (
