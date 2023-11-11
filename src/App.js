@@ -25,6 +25,8 @@ import DeleteDvdesign from './components/AddNew/DvDesign/DeleteDvdesign';
 import DeleteDvlogin from './components/AddNew/DvLogin/DeleteDvlogin';
 import DeleteSwinterface from './components/AddNew/SwInterface/DeleteSwinterface';
 import DeleteSwdetail from './components/AddNew/SwDetail/DeleteSwdetail';
+import { ExportUnit } from './components/ExportContext/ExportContext';
+import ExportPage from './components/ExportContext/ExportPage';
 
 
 function App() {
@@ -32,9 +34,15 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {/* headerpath */}
-        <HomePageHeader />
+          <HomePageHeader />
+
         <Routes>
           {/* bodypath */}
+          
+          <Route
+            path="export-page/:id"
+            element={<ExportPage />}
+          />
           <Route path="/" element={<WBListPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
@@ -175,6 +183,9 @@ function App() {
             path="swinterface-popup/:id/:switchId"
             element={<SwinterfacePopup />}
           />
+
+
+
         </Routes>
       </BrowserRouter>
     </div>

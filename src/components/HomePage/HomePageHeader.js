@@ -1,13 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import './HomePageHeader.css'
-import {PlusCircleIcon, ArrowUpOnSquareIcon, ChevronDownIcon,ArrowLeftOnRectangleIcon} from '@heroicons/react/24/outline'
-import { useDispatch } from 'react-redux';
+import {PlusCircleIcon, ArrowUpOnSquareIcon} from '@heroicons/react/24/outline'
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../../redux/slices/users/userSlice';
+import { useState } from 'react';
+import SwinterfacePopup from '../AddNew/SwInterface/SwitchInterface';
+import ExportPage from '../ExportContext/ExportPage';
+import { useEffect } from 'react';
+import { fetchconfigAction } from '../../redux/slices/configSlice/configSlice';
 
 
 const HomePageHeader = () =>{
 
   const dispatch = useDispatch();
+
+
+  const location = useLocation();
+  const id = location.pathname.split('/').pop();
+
+  // useEffect(() =>{
+  //   fetchconfigAction(id)
+  // },[id])
+
+  // const {config} = useSelector((state) => state?.configs)
+
+
+  const [exportClick, setExportClick] = useState(false);
+
+  const handleExportClick = () =>{
+    console.log("hello");
+    setExportClick(true);
+  }
 
   //get user login from local storage
   const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -46,12 +69,13 @@ const HomePageHeader = () =>{
             </Link>
 
             {isLoggedIn && (
-              <>
-                <div className="export">
+              <><Link to={`export-page/${id}`}>
+                <div className="export" >
+                  
                   <ArrowUpOnSquareIcon className="exporticon" />
                   <div className="exporttext">Export</div>
 
-                </div>
+                </div></Link>
               </>
             )}
           </div>
@@ -82,6 +106,8 @@ const HomePageHeader = () =>{
           )}
 
         </div>
+        {exportClick && <SwinterfacePopup />}
+
       </header>
     );
 }
