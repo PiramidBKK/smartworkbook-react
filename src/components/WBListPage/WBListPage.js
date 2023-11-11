@@ -6,12 +6,15 @@ import { fetchconfigsAction } from '../../redux/slices/configSlice/configSlice';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { event } from 'animated';
 
 
 
 const WBListPage = () =>{
 
     const [selectedFileType, setSelectedFileType] = useState([]);
+
+    const [searchText, setSearchText] = useState('');
 
     //dispatch
     const dispatch = useDispatch();
@@ -26,6 +29,16 @@ const WBListPage = () =>{
 
     const configData = configs?.data?.config
 
+    const filteredConfigData = configData?.filter((config) => {
+      const searchLower = searchText.toLowerCase();
+      return (
+        String(config.projectname).toLowerCase().includes(searchLower) ||
+        String(config.locationname).toLowerCase().includes(searchLower) ||
+        (typeof config.filetypes === 'string' && config.filetypes.toLowerCase().includes(searchLower))
+      );
+    });
+
+
     // let configURL = `${baseURL}/config`
 
     return (
@@ -35,8 +48,8 @@ const WBListPage = () =>{
         </div>
         <div className="workingTab">
           <div className="filterTab">
-            <div className="sort">Sort By</div>
-            <FunnelIcon className="filter" />
+            <div className="sort"><input placeholder='Search...' value={searchText} onChange={(event) =>setSearchText(event.target.value)}/></div>
+            
 
           </div>
           <div className="line" />
@@ -50,7 +63,7 @@ const WBListPage = () =>{
         </div>
 
         <div className="Location-Data">
-          {configData?.map((config) => (
+          {filteredConfigData?.map((config) => (
             <div className="config-item">
               <Link to={`wbdetail/${config._id}`} key={config._id} className='link-project'>
                 <div className="fetched-text">
