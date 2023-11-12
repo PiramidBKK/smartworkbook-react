@@ -29,17 +29,20 @@ const HomePageHeader = () =>{
 
   const locationToExport = () =>{
     if(pathlocation === `/dvdesign-popup/${id}`){
-      window.location.href = `/dvlogin-popup/${id}`;
+      window.location.href = `/dvdesign-export/${id}`;
 
     }
     else if(pathlocation === `/dvlogin-popup/${id}`){
+      window.location.href = `/dvlogin-export/${id}`;
 
     }
     else if(pathlocation === `/swdetail-popup/${id}`){
+      window.location.href = `/swdetail-export/${id}`;
 
     }
     else if(pathlocation === `/swinterface-popup/${switchId}/${id}`){
-      window.location.href = `/swinterface-popup/${switchId}/${id}`;
+      window.location.href = `/swinterface-export/${switchId}/${id}`;
+      
     }
   }
 

@@ -27,6 +27,10 @@ import DeleteSwinterface from './components/AddNew/SwInterface/DeleteSwinterface
 import DeleteSwdetail from './components/AddNew/SwDetail/DeleteSwdetail';
 import { ExportUnit } from './components/ExportContext/ExportContext';
 import ExportPage from './components/ExportContext/ExportPage';
+import ExportDvdesign from './components/AddNew/DvDesign/ExportDvdesing';
+import ExportDvlogin from './components/AddNew/DvLogin/ExportDvlogin';
+import ExportSwdetail from './components/AddNew/SwDetail/ExportSwdetail';
+import ExportSwinterface from './components/AddNew/SwInterface/ExportSwinterface';
 
 
 function App() {
@@ -179,10 +183,15 @@ function App() {
 
           <Route path="swdetail-popup/:id" element={<SwdetailPopup />} />
 
-          <Route
-            path="swinterface-popup/:id/:switchId"
-            element={<SwinterfacePopup />}
-          />
+          <Route path="swinterface-popup/:id/:switchId"element={<SwinterfacePopup />}/>
+
+          <Route path="dvdesign-export/:id" element={<ExportDvdesign />} />
+
+          <Route path="dvlogin-export/:id" element={<ExportDvlogin />} />
+
+          <Route path="swdetail-export/:id" element={<ExportSwdetail />} />
+
+          <Route path="swinterface-export/:id/:switchId"element={<ExportSwinterface />}/>
 
 
 
