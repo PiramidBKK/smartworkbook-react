@@ -46,7 +46,7 @@ export default function ExportSwdetail(){
     return (
       <div className="swdetail-popup-main">
         <div ref={tableRef}>
-        <h2>Switch Details</h2>
+        <h2>Switch Details {projectName}</h2>
         <table>
           <thead>
             <th>Hostname</th>
