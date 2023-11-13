@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './SwdetailPopup.css'
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { fetchSwDetailsAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import Swdetail from './Swdetail';
 import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
 import { fetchconfigAction } from '../../../redux/slices/configSlice/configSlice';
-
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 export default function ExportSwdetail(){
     const dispatch = useDispatch();
@@ -18,10 +19,33 @@ export default function ExportSwdetail(){
 
     const {config, error, loading} = useSelector((state)=> state?.configs)
     const swdetailData = config?.data?.config?.swdetails;
+    const projectName = config?.data?.config?.projectname;
 
+    const tableRef = useRef(null);
+
+    const exportToPDF = () => {
+      const input = tableRef.current;
+  
+      html2canvas(input).then((canvas) =>{
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 175.25;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const padding = 1.27; 
+        const positionX = (pdf.internal.pageSize.getWidth() - imgWidth) / 2;
+        const positionY = padding;
+  
+        pdf.addImage(imgData, 'PNG', positionX, positionY, imgWidth - 2 * padding, imgHeight - 2 * padding);
+  
+  
+        pdf.save(`Switch-Details-${projectName}.pdf`);
+      });
+  
+    };
 
     return (
       <div className="swdetail-popup-main">
+        <div ref={tableRef}>
         <h2>Switch Details</h2>
         <table>
           <thead>
@@ -55,7 +79,7 @@ export default function ExportSwdetail(){
             ))}
           </tbody>
         </table>
-
+        </div>
         <div className='popup-dvdesign-button'>
 
         <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
@@ -64,11 +88,11 @@ export default function ExportSwdetail(){
           </div>
         </Link>
 
-        <Link to={`/swdetail/${id}`} className="ok-btn-dvdesign">
-          <div className="ok-dvdesign">
-            <h3>OK</h3>
-          </div>
-        </Link>
+        <div className="ok-btn-dvdesign" onClick={exportToPDF}>
+              <div className="ok-dvdesign">
+                <h3>Export to PDF</h3>
+              </div>
+            </div>
         </div>
 
       </div>

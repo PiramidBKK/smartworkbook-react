@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './SwitchInterface.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchSwDetailAction } from '../../../redux/slices/swdetailSlice/swdetailSlice';
 import { fetchconfigsAction } from '../../../redux/slices/configSlice/configSlice';
 import { TrashIcon , PencilSquareIcon  } from "@heroicons/react/24/outline";
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 export default function ExportSwinterface(){
     const dispatch = useDispatch();
@@ -21,26 +23,45 @@ export default function ExportSwinterface(){
     
     const swdetailData = swdetail?.data?.singleSwdetail;
 
-    console.log(swdetailData);
-    
+
 
     const swdetailName = swdetailData;
     const swinterfaceData = swdetailName ? swdetailName.swinterfaces : [];
 
+    const modelImage = swdetailName?.modelimg;   
+
+    const tableRef = useRef(null);
+    // const imageRef = useRef(null)
+
+    const exportToPDF = () => {
+      const input = tableRef.current;
+  
+      html2canvas(input, {allowTaint: true, useCORS: true}).then((canvas) =>{
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 175.25;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const padding = 1.27; 
+        const positionX = (pdf.internal.pageSize.getWidth() - imgWidth) / 2;
+        const positionY = padding;
+  
+        pdf.addImage(imgData, 'PNG', positionX, positionY, imgWidth - 2 * padding, imgHeight - 2 * padding);
+  
+  
+        pdf.save(`Interfaces-${swdetailName.hostname}.pdf`);
+      });
+  
+    };
 
     return (
       <div className="swinterface-popup-main">
+        <div ref={tableRef}>
         <h2>
           Switch Interface : {swdetailName ? swdetailName.hostname : null}
         </h2>
         <div className="image-of-switch">
-          {swdetailName ? (
-            <img
-              src={swdetailName.modelimg}
-              alt="Switch Image"
-              className="switch-image"
-            ></img>
-          ) : null}
+
+          <img src={modelImage} className='switch-image' />
         </div>
         <div className="switchdetail-data">
           <div className="Hardware-detail">
@@ -112,7 +133,7 @@ export default function ExportSwinterface(){
             ))}
           </tbody>
         </table>
-
+        </div>
         <div className="popup-dvdesign-button">
           <Link to={`/wbdetail/${id}`} className="back-btn-dvdesign">
             <div className="back-dvdesign">
@@ -120,14 +141,11 @@ export default function ExportSwinterface(){
             </div>
           </Link>
 
-          <Link
-            to={`/swinterface/${id}/${switchId}`}
-            className="ok-btn-dvdesign"
-          >
-            <div className="ok-dvdesign">
-              <h3>OK</h3>
+          <div className="ok-btn-dvdesign" onClick={exportToPDF}>
+              <div className="ok-dvdesign">
+                <h3>Export to PDF</h3>
+              </div>
             </div>
-          </Link>
         </div>
       </div>
     );

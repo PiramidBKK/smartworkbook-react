@@ -40,7 +40,7 @@ export default function ExportDvdesign(){
       const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 175.25;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      const padding = 1.27; // ขอบเขตในหน่วยมิลลิเมตร (1.27 ซม.ที่แปลงเป็นมิลลิเมตร)
+      const padding = 1.27; 
       const positionX = (pdf.internal.pageSize.getWidth() - imgWidth) / 2;
       const positionY = padding;
 
