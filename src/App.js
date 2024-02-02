@@ -39,7 +39,7 @@ function App() {
       <BrowserRouter>
         {/* headerpath */}
           <HomePageHeader />
-          <Modal />
+
 
         <Routes>
           {/* bodypath */}
