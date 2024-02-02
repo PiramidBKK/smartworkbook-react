@@ -19,26 +19,7 @@ const initialState = {
 };
 
 //Line API notify
-export const triggerLineNotificationAction = createAsyncThunk(
-  'Trigger_Line_Notification',
-  async(_,{ getState }) =>{
-    try{
-      const state = getState();
 
-      const  notificationData = {
-        title: 'การแจ้งเตือนใหม่',
-        content: 'เกิดเหตุการณ์สำคัญ!',
-      }
-
-      await sendLineNotification(notificationData);
-
-      return{ success: true, message: 'Success' }
-
-    }catch(error){
-      console.log(error);
-    }
-  }
-)
 
 //create config action
 export const createConfigAction = createAsyncThunk(
@@ -77,8 +58,6 @@ export const createConfigAction = createAsyncThunk(
         formData,
         tokenConfig
       );
-
-      await dispatch(triggerLineNotificationAction());
 
       return data;
     } catch (error) {
