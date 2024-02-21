@@ -61,7 +61,7 @@ export default function SwitchInterface (){
     e.preventDefault();
     await dispatch(createSwinterfaceAction({...formData, id, switchId}));
 
-    // window.location.reload();
+    window.location.reload();
 
   }
 
