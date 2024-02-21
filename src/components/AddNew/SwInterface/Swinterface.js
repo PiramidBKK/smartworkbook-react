@@ -46,7 +46,11 @@ export default function SwitchInterface (){
 
   const configData = config?.data?.config?.swdetails;
 
+
+
   const switchName = configData?.find((swdetail)=>swdetail._id === switchId)
+  const portValue = switchName.swinterfaces.length
+  const currentPort = portValue + 1
 
   
   const onChangeHandler = (e) => {
@@ -64,16 +68,20 @@ export default function SwitchInterface (){
 
     return(
         <div className="AddSwInterface">
-        <h1>Switch Interface : {switchName ? switchName.hostname : null}</h1>
+        <h1>Switch Interface : {switchName ? switchName.hostname : null} PORT : {currentPort} </h1>
         <div className="Preview">
           <Link to={`/swinterface-popup/${id}/${switchId}`}>
+            
             <button className="preview-btn">Preview</button>
           </Link>{" "}
         </div>
+        
         <form onSubmit={onSubmitHandler}>
+        
         <div className='errormsg'>{error && <p className='displayError-add-data'>{error?.message}</p>}</div>
 
           <div className='main-form'>
+          
           <div className="st-form">
             
             </div>
